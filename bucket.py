@@ -1,4 +1,4 @@
-# Version 0.0.5 - 2/28/2023 6:13 PM
+# Version 0.0.5 - 2/28/2023 6:16 PM
 
 syntax = ["and", "or", "if", "else", "print", "var", "while"]
 # The syntax list will contain all of the syntax for Bucket.
