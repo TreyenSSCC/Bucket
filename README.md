@@ -1,4 +1,4 @@
-# Bucket - Version 1.0.5
+# Bucket - Version 0.0.5
 This is a programming language that I am creating.
 
 I am creating Bucket as the final project for my Computer Information Tech Capstone course at Southern State Community College.
