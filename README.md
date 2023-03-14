@@ -7,6 +7,7 @@ Bucket may or may not be continued after the completion of the final project.
 
 
 Update Log
+
 **bucket.py** - Version 0.0.8: Started to add the function of ADD syntax. Made the syntax list expandable.
 
 **bucket.py** - Version 0.0.7: Added func syntax to syntax list.
