@@ -1,5 +1,5 @@
-# Bucket - Version 0.0.7
-This is a programming language that I am creating.
+# Bucket - Version 0.0.8
+Bucket is a programming language which I am coding. I plan on it being open source.
 
 I am creating Bucket as the final project for my Computer Information Tech Capstone course at Southern State Community College.
 
@@ -7,6 +7,7 @@ Bucket may or may not be continued after the completion of the final project.
 
 
 Update Log
+**bucket.py** - Version 0.0.8: Started to add the function of ADD syntax. Made the syntax list expandable.
 
 **bucket.py** - Version 0.0.7: Added func syntax to syntax list.
 
