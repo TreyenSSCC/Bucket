@@ -8,7 +8,7 @@ Bucket may or may not be continued after the completion of the final project.
 
 Update Log
 
-**bucket.pu** - Version 0.0.7: Added func syntax to syntax list.
+**bucket.py** - Version 0.0.7: Added func syntax to syntax list.
 
 **bucket.py** - Version 0.0.6: Added a loop that detects if the user entered syntax and then prints out the syntax.
 
