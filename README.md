@@ -1,4 +1,4 @@
-# Bucket - Version 0.1.0
+# Bucket - Version 0.1.1a
 This is a programming language that I am creating.
 
 I am creating Bucket as the final project for my Computer Information Tech Capstone course at Southern State Community College.
@@ -7,6 +7,8 @@ Bucket may or may not be continued after the completion of the final project.
 
 
 Update Log
+
+**bucket.py** - Version 0.1.1a - Changed how the version number system works. Version with 'a' at the end with be the main version. Versions with any other letters will be be modified versions, for when I want to experiment. Also, changed the 'print' syntax to 'pour' and added an error for when no input is given by the user.
 
 **bucket.py** - Version 0.1.0: Added basic artimatic functions: add, sub, div, and div. Cleaned up the code. Rewrote how syntax was detected by the program.
 

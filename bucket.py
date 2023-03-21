@@ -1,6 +1,6 @@
-# Version 0.1.0 - 3/20/2023 4:24 PM
+# Version 0.1.1a - 3/21/2023 4:57 PM
 3
-syntax = ["and", "or", "if", "else", "print", "var", "while", "input", "func", "add", "sub", "mul", "div", "end of list"]
+syntax = ["and", "or", "if", "else", "pour", "var", "while", "input", "func", "add", "sub", "mul", "div", "end of list"]
 #Spill is a print, fill is an input
 # The syntax list will contain all of the syntax for Bucket.
 
@@ -36,6 +36,8 @@ def Bucket():# This is the main function of the program. This is where Bucket wi
                 print("Invalid ", syntax[12], " syntax. Double check your input.", sep="")
         elif(user_code.split(" ")[0]==syntax[x]):
             print(syntax[x])
+        else:
+            print("Invalid syntax given.")
             
         
 
