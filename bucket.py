@@ -1,7 +1,7 @@
-# Version 0.1.1a - 3/21/2023 4:57 PM
+# Version 0.1.2a - 3/21/2023 3:17 PM
 3
-syntax = ["and", "or", "if", "else", "pour", "var", "while", "input", "func", "add", "sub", "mul", "div", "end of list"]
-#Spill is a print, fill is an input
+syntax = ["and", "or", "if", "else", "pour", "var", "while", "fill", "func", "add", "sub", "mul", "div", "loop", "end of list"]
+#Spill/pour is a print, fill is an input
 # The syntax list will contain all of the syntax for Bucket.
 
 def Bucket():# This is the main function of the program. This is where Bucket will perform most of it's tasks.
