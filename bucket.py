@@ -1,4 +1,4 @@
-# Version 0.1.4a - 3/28/2023 11:25 AM
+# Version 0.1.5a - 3/28/2023 11:55 AM
 3
 syntax = ["and", "or", "if", "else", "pour", "var", "while", "fill", "func", "add", "sub", "mul", "div", "loop", "end of list"]
 variables = [] #This stores the variables for the user
@@ -53,7 +53,7 @@ def Bucket():# This is the main function of the program. This is where Bucket wi
                     tempVar = ""; num = 1; transferData = "" #These three lines grab the number
                     transferData = user_code.split("["); transferData = transferData[1].split("]")
                     num = int(transferData[0])
-                    tempVar=user_code.split(" ")[3]
+                    tempVar=user_code.split("'")[1]
                     variables.insert(num, tempVar); print(variables)
                 elif("=" not in user_code):
                     tempVar = ""; num = 1; transferData = ""
