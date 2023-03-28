@@ -1,6 +1,7 @@
-# Version 0.1.3a - 3/21/2023 4:31 PM
+# Version 0.1.4a - 3/28/2023 11:25 AM
 3
 syntax = ["and", "or", "if", "else", "pour", "var", "while", "fill", "func", "add", "sub", "mul", "div", "loop", "end of list"]
+variables = [] #This stores the variables for the user
 #Spill/pour is a print, fill is an input
 # The syntax list will contain all of the syntax for Bucket.
 
@@ -46,25 +47,23 @@ def Bucket():# This is the main function of the program. This is where Bucket wi
                     x+=1
             except:
                 print("Double check your pour syntax.") # When given "pour 'hi", it prints the hi but gives an error.
-        elif(user_code.split(" ")[0]==syntax[5]): #Something is wrong.
-            try: # list.insert(0, "stuff")
-                var = []
-                x = 13
-                tempVar = ""
-                number = 111; number[0]=user_code.split(" ")[1][0]; number[1]=user_code.split(" ")[1][1]
-                number[2]=user_code.split(" ")[1][2]
-                y=0
-                while True:
-                    if(user_code[x]!="'"):
-                        tempVar[y]=user_code[x]
-                    else:
-                        var.insert(number, tempVar)
-                        print(var[number])
-                        break
-                #var [001] = 'variable'
-            except:
-                print("Error")
+        elif(user_code.split(" ")[0]==syntax[5]):
+            try:                # var [000] = 'Hello'
+                if("=" in user_code):
+                    tempVar = ""; num = 1; transferData = "" #These three lines grab the number
+                    transferData = user_code.split("["); transferData = transferData[1].split("]")
+                    num = int(transferData[0])
+                    tempVar=user_code.split(" ")[3]
+                    variables.insert(num, tempVar); print(variables)
+                elif("=" not in user_code):
+                    tempVar = ""; num = 1; transferData = ""
+                    transferData = user_code.split("["); transferData = transferData[1].split("]")
+                    num = int(transferData[0])
+                    print(variables[num])
 
+                
+            except:
+                print("Something is wrong with your var syntax. Double check it.")
         elif(user_code.split(" ")[0]==syntax[x]):
             print(syntax[x])
         else:

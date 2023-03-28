@@ -1,4 +1,4 @@
-# Bucket - Version 0.1.3a
+# Bucket - Version 0.1.4a
 This is a programming language that I am creating.
 
 I am creating Bucket as the final project for my Computer Information Tech Capstone course at Southern State Community College.
@@ -7,6 +7,8 @@ Bucket may or may not be continued after the completion of the final project.
 
 
 Update Log
+
+**bucket.py** - Version 0.1.4a - Added basic functionality to the var syntax. Users are able to store and see what they store. It cannot be changed what is store currently. Also, make sure to start at [000] and increment up from there. Starting higher will cause the wrong var to be grabbed when asked for.
 
 **bucket.py** - Version 0.1.3a - The 'pour' syntax is now able to print a string to the screen. Started work on the function of the 'var' syntax.
 
