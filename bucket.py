@@ -1,5 +1,5 @@
 # Version 0.1.5a - 3/28/2023 11:55 AM
-#3
+
 syntax = ["and", "or", "if", "else", "pour", "var", "while", "fill", "func", "add", "sub", "mul", "div", "loop", "end of list"]
 variables = [] #This stores the variables for the user
 #Spill/pour is a print, fill is an input
