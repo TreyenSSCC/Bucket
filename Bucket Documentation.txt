@@ -1,3 +1,5 @@
+This documentation is for Bucket Version 0.1.5a. It may not be accurate for other versions.
+
 quit: Used to exit the program.
 exit: Used to exit the program.
 add: This can add two numbers together. To use follow the example - "add 1 3".
