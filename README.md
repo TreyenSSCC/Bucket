@@ -8,7 +8,7 @@ Bucket may or may not be continued after the completion of the final project.
 
 Update Log
 
-**bucket.py** - Version 0.1.5a - Fixed a 'var' bug that appeared. Users are now able to store multiple words in a single var.
+**bucket.py** - Version 0.1.5a - Fixed a 'var' bug that appeared. Users are now able to store multiple words in a single var instance.
 
 **bucket.py** - Version 0.1.4a - Added basic functionality to the var syntax. Users are able to store and see what they store. It cannot be changed what is store currently. Also, make sure to start at [000] and increment up from there. Starting higher will cause the wrong var to be grabbed when asked for. Note: Only one word can be sent to the string currently.
 
