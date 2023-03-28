@@ -6,5 +6,5 @@ mul: This will multiply two numbers. To use follow the example - "mul 2 1".
 div: This will divide two numbers. To use follow the example - "div 2 1".
 pour: This prints a string to the screen. To use follow the example - "pour 'hello world'".
 var: This will add a string to a variable. To use follow the example - "var [000] = 'hello world'". "var [000]"
-Note: Currently any data added to a var will be static, it won't ve able to be changed. Also vars cannot be used with other syntax yet.
+Note: Currently any data added to a var will be static, it won't be able to be changed. Also vars cannot be used with other syntax yet.
 Note: Unable to combine the different math operations.
