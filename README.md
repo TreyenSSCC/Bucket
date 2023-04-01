@@ -8,7 +8,7 @@ Bucket may or may not be continued after the completion of the final project.
 
 Update Log
 
-**bucket.py** - Version 0.1.6a - Worked on 'var' working with 'add'. Worked on adding the ability to save code.
+**bucket.py** - Version 0.1.6a - Worked on 'var' working with 'add'. Worked on adding the ability to save code. The 'pour' syntax can now print the 'var'.
 
 **bucket.py** - Version 0.1.5a - Fixed a 'var' bug that appeared. Users are now able to store multiple words in a single var instance.
 
