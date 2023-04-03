@@ -1,4 +1,4 @@
-This documentation is for Bucket Version 0.1.6a. It may not be accurate for other versions.
+This documentation is for Bucket Version 0.1.7a. It may not be accurate for other versions.
 
 quit: Used to exit the program.
 exit: Used to exit the program.
@@ -8,6 +8,10 @@ mul: This will multiply two numbers. To use follow the example - "mul 2 1".
 div: This will divide two numbers. To use follow the example - "div 2 1".
 pour: This prints a string to the screen. To use follow the example - "pour 'hello world'". "pour var [000]".
 var: This will add a string to a variable. To use follow the example - "var [000] = 'hello world'". "var [000]"
+equal: This will check if two instances are equal. To use follow the example - "equal '1' '1'".
+loop: This will run user code a specified amount of times. To use follow the example - "loop 2 {pour 'hello'}"
+Note: 'equal' can only compare vars to vars and strings to strings.
 Note: Currently any data added to a var will be static, it won't be able to be changed. Also vars cannot be used with other syntax yet.
 Note: Unable to combine the different math operations.
+Note: Capitalization is ignored, including in 'pour'.
 Note: pour can now print 'var' syntax.

@@ -1,4 +1,4 @@
-# Bucket - Version 0.1.6a
+# Bucket - Version 0.1.7a
 This is a programming language that I am creating.
 
 I am creating Bucket as the final project for my Computer Information Tech Capstone course at Southern State Community College.
@@ -7,6 +7,8 @@ Bucket may or may not be continued after the completion of the final project.
 
 
 Update Log
+
+**bucket.py** - Version 0.1.7a - Added some functionality to the 'loop' syntax. It can now run 'pour' a set amount of times decided by the user. Started turning some of the syntax into functions for the 'loop' syntax. Added 'equal' syntax which can compare two strings or two vars. Strings cannot be compared to vars. Planning on having the 'loop' syntax run every other type of syntax. Cannot increment a var inside of the loop yet.
 
 **bucket.py** - Version 0.1.6a - Worked on 'var' working with 'add'. Worked on adding the ability to save code. The 'pour' syntax can now print the 'var'.
 
