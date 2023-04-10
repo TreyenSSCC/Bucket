@@ -1,4 +1,4 @@
-This documentation is for Bucket Version 0.1.7a. It may not be accurate for other versions.
+This documentation is for Bucket Version 0.1.8a. It may not be accurate for other versions.
 
 quit: Used to exit the program.
 exit: Used to exit the program.
