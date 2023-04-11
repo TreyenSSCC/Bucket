@@ -1,4 +1,4 @@
-# Version 0.1.8a - 4/03/2023 5:57 PM
+# Version 0.1.9a - 4/11/2023 5:00 PM
 
 syntax = ["and", "or", "if", "else", "pour", "var", "while", "fill", "func", "add", "sub", "mul", "div", "loop", "equal", "end of list"]
 variables = [] #This stores the variables for the user
@@ -22,7 +22,7 @@ def Bucket(code_line):# This is the main function of the program. This is where 
 
             #print(user_data)
 
-        user_data.insert(code_line-1, user_code)
+            user_data.insert(code_line-1, user_code)
 
         #while(x<len(syntax)-1): # Detects if the user entered any syntax. - OBSOLETE
         if(user_code.split(" ")[0]==syntax[9]): #Add syntax
@@ -44,10 +44,7 @@ def Bucket(code_line):# This is the main function of the program. This is where 
         elif(user_code.split(" ")[0]==syntax[11]): # Multiplication Syntax
             mul(user_code)
         elif(user_code.split(" ")[0]==syntax[12]): # Division Syntax
-            try:
-                print(int(user_code.split(" ")[1])/int(user_code.split(" ")[2]))
-            except:
-                print("Invalid ", syntax[12], " syntax. Double check your input.", sep="")
+            div(user_code)
         elif(user_code.split(" ")[0]==syntax[4]): # Pour syntax
             pour(user_code)
         elif(user_code.split(" ")[0]==syntax[5]):
@@ -121,8 +118,9 @@ def equal():
     else:
         print("false")  
 
+
 def sub(user_code): 
-    if(user_code.split(" ")[0]==syntax[10]): # Subtraction  syntax
+    if(user_code.split(" ")[0]==syntax[10]): # Subtraction syntax
         try:
             print(int(user_code.split(" ")[1])-int(user_code.split(" ")[2]))
         except:
@@ -134,6 +132,12 @@ def mul(user_code):
             print(int(user_code.split(" ")[1])*int(user_code.split(" ")[2]))
         except:
             print("Invalid ", syntax[11], " syntax. Double check your input.", sep="")
+
+def div(user_code):
+    try:
+        print(int(user_code.split(" ")[1])/int(user_code.split(" ")[2]))
+    except:
+        print("Invalid ", syntax[12], " syntax. Double check your input.", sep="")
 
 def pour(user_code):
     if(user_code.split(" ")[0]==syntax[4]):
