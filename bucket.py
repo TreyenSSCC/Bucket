@@ -1,4 +1,4 @@
-# Version 0.1.9a - 4/11/2023 5:00 PM
+# Version 0.2.0a - 4/11/2023 10:53 AM
 
 syntax = ["and", "or", "if", "else", "pour", "var", "while", "fill", "func", "add", "sub", "mul", "div", "loop", "equal", "end of list"]
 variables = [] #This stores the variables for the user
@@ -26,19 +26,7 @@ def Bucket(code_line):# This is the main function of the program. This is where 
 
         #while(x<len(syntax)-1): # Detects if the user entered any syntax. - OBSOLETE
         if(user_code.split(" ")[0]==syntax[9]): #Add syntax
-            try: # add var [000] 2 or add 1 var [000]
-                if(user_code.split(" ")[1]=="var" or user_code.split(" ")[2]=="var"):
-                    tempVar = ""; num = 1; transferData = ""
-                    transferData = user_code.split("["); transferData = transferData[1].split("]")
-                    num = int(transferData[0])
-                    if(user_code.split(" ")[1]=="var"):
-                        print(int(variables[num])+user_code.split(" ")[3])
-                    else:
-                        print(user_code.split(" ")[1]+int(variables[num]))
-                else:
-                    print(int(user_code.split(" ")[1])+int(user_code.split(" ")[2]))
-            except:
-                print("Invalid ", syntax[9], " syntax. Double check your input.", sep="")
+            add(user_code)
         elif(user_code.split(" ")[0]==syntax[10]): # Subtraction  syntax
             sub(user_code) # Calls the sub function
         elif(user_code.split(" ")[0]==syntax[11]): # Multiplication Syntax
@@ -80,7 +68,7 @@ def Bucket(code_line):# This is the main function of the program. This is where 
                 print("true")
             else:
                 print("false")
-        elif(user_code.split(" ")[0]==syntax[13]): # loop 10 {pour 'hello world'}
+        elif(user_code.split(" ")[0]==syntax[13]): # loop 10 {pour 'hello world'} - This is the loop syntax.
             try:
                 tempCode = user_code.split("{")
                 tempCode = tempCode[1].split("}")
@@ -89,7 +77,8 @@ def Bucket(code_line):# This is the main function of the program. This is where 
                 user_number = int(user_code.split(" ")[1])
                 x=0;
                 while(x!=user_number):
-                    pour(tempCode) #The pour function
+                    pour(tempCode) #The pour function - Not working, it prints out invalid syntax when there is valid syntax.
+                    add(tempCode)
                     x+=1
             except:
                 print("Check your syntax.")
@@ -118,6 +107,11 @@ def equal():
     else:
         print("false")  
 
+def add(user_code):
+    try: # add var [000] 2 or add 1 var [000]
+        print(int(user_code.split(" ")[1])+int(user_code.split(" ")[2]))
+    except:
+        print("Invalid ", syntax[9], " syntax. Double check your input.", sep="")
 
 def sub(user_code): 
     if(user_code.split(" ")[0]==syntax[10]): # Subtraction syntax
@@ -149,13 +143,14 @@ def pour(user_code):
                 print(variables[num])
             else:
                 x = 6
-                while True:                                             
-                    if(user_code[x]!="'"):
-                        print(user_code[x], sep="", end="")
-                    elif(user_code[x]=="'"):
-                        print("")
-                        break
-                    x+=1    
+                #while True:
+                print(user_code.split("'")[1])                                         
+                    #if(user_code[x]!="'"):
+                        #print(user_code[x], sep="", end="")
+                    #elif(user_code[x]=="'"):
+                        #print("")
+                        #break
+                    #x+=1    
         except:
             print("Double check your pour syntax.") # When given "pour 'hi", it prints the hi but gives an error.    
 
