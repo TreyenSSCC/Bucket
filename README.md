@@ -8,7 +8,7 @@ Bucket may or may not be continued after the completion of the final project.
 
 Update Log
 
-**bucket.py** - Version 0.2.0a - Moved the 'add' sntax code into a function. Found an error with the 'pour' syntax while used with the 'loop' syntax. Changed how 'pour' prints to the screen to try to fix the bug. The bug still occurs.
+**bucket.py** - Version 0.2.0a - Moved the 'add' syntax code into a function. Found an error with the 'pour' syntax while used with the 'loop' syntax. Changed how 'pour' prints to the screen to try to fix the bug. The bug still occurs.
 
 **bucket.py** - Version 0.1.9a - Moved the 'div' syntax code into a function.
 
