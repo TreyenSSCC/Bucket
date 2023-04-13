@@ -1,4 +1,4 @@
-# Bucket - # Version 0.2.0a
+# Bucket - # Version 0.2.1a
 This is a programming language that I am creating.
 
 I am creating Bucket as the final project for my Computer Information Tech Capstone course at Southern State Community College.
@@ -7,6 +7,8 @@ Bucket may or may not be continued after the completion of the final project.
 
 
 Update Log
+
+**bucket.py** - Version 0.2.1a - The 'add' and 'sub' syntax can now somewhat use the 'var' syntax. They only work when a var is not being added or subtracted from another var. Fixed a bug with the 'var' syntax. Worked on 'open' and 'save' Made 'var' and 'equal' into functions. The 'loop' syntax should be able to run most of the syntax now.
 
 **bucket.py** - Version 0.2.0a - Moved the 'add' syntax code into a function. Found an error with the 'pour' syntax while used with the 'loop' syntax. Changed how 'pour' prints to the screen to try to fix the bug. The bug still occurs.
 
