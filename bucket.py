@@ -1,4 +1,4 @@
-# Version 0.2.1a - 4/13/2023 4:35 PM
+# Version 0.2.2a - 4/14/2023 1:41 PM
 
 syntax = ["and", "or", "if", "else", "pour", "var", "while", "fill", "func", "add", "sub", "mul", "div", "loop", "equal", "end of list"]
 variables = [] #This stores the variables for the user
@@ -67,6 +67,8 @@ def Bucket(code_line):# This is the main function of the program. This is where 
                         mul(tempCode)
                     elif(tempCode.split(" ")[0]=="equal"):
                         equal(tempCode)
+                    elif(tempCode.split(" ")[0]=="var"):
+                        var(tempCode)
                     x+=1
             except:
                 print("Check your syntax.")
@@ -76,31 +78,41 @@ def Bucket(code_line):# This is the main function of the program. This is where 
             
 #Modular Test - Failed. Keeping in code for when the loop or if syntax needs it.
 def equal(user_code):
-    if(user_code.split(" ")[1]==user_code.split(" ")[2]):
-        print("true")
-    else:
-        print("false")  
+    try:
+        if(user_code.split(" ")[1]==user_code.split(" ")[2]):
+            print("true")
+        else:
+            print("false")
+    except:
+        print("Nothing to equal.")
 
 def add(user_code):
-    try: # add [000] 2 or add 1 [000]
+    try:
+        # add [000] 2 or add 1 [000]
         if(user_code.split(" ")[1][0]=="["):
             tempVar1 = ""; num1 = 1; transferData1 = ""
             transferData1 = user_code.split("["); transferData1 = transferData1[1].split("]")
             num1 = int(transferData1[0])
-            if(user_code.split(" ")[2][0]=="["): # This adds two vars together,
+            if(user_code.split(" ")[2][0]=="["):# This adds two vars together,
                 tempVar2 = ""; num2 = 1; transferData2 = ""
-                transferData2 = user_code.split("["); transferData2 = transferData2[1].split("]")
-                num2 = int(transferData2[0])
-                print(int(variables[num1])+int(variables[num2])) # This is for some reason adding var1 to itself instead of var2.
-            else: #This only adds a var in front and a normal number on bacl together
+                transferData2 = user_code.split("["); transferData2 = transferData2[2].split("]") #This needs to be 2 instead of 1. Found out several days after.
+                num2 = int(transferData2[0]); #print (transferData1, transferData2) That was for debugging. 
+                print(int(variables[num1])+int(variables[num2]))
+                return(int(variables[num1])+int(variables[num2]))
+            else: 
+                #This only adds a var in front and a normal number on back together
                 print(int(variables[num1])+int(user_code.split(" ")[2]))
+                return(int(variables[num1])+int(user_code.split(" ")[2]))
         elif(user_code.split(" ")[2][0]=="["): # This adds two vars together,
             tempVar2 = ""; num2 = 1; transferData2 = ""
             transferData2 = user_code.split("["); transferData2 = transferData2[1].split("]")
             num2 = int(transferData2[0])
             print(int(user_code.split(" ")[1])+int(variables[num2]))
+            return(int(user_code.split(" ")[1])+int(variables[num2]))
+
         else:
-            print(int(user_code.split(" ")[1])+int(user_code.split(" ")[2]))
+            print(int(user_code.split(" ")[1])+int(user_code.split(" ")[2])) #This prints the result
+            return(int(user_code.split(" ")[1])+int(user_code.split(" ")[2])) #This allows for var to save the result
     except:
         print("Invalid ", syntax[9], " syntax. Double check your input.", sep="")
 
@@ -112,7 +124,7 @@ def sub(user_code):
             num1 = int(transferData1[0])
             if(user_code.split(" ")[2][0]=="["): # This adds two vars together,
                 tempVar2 = ""; num2 = 1; transferData2 = ""
-                transferData2 = user_code.split("["); transferData2 = transferData2[1].split("]")
+                transferData2 = user_code.split("["); transferData2 = transferData2[2].split("]")
                 num2 = int(transferData2[0])
                 print(int(variables[num1])-int(variables[num2]))
             else: #This only adds a var in front and a normal number on bacl together
@@ -128,15 +140,52 @@ def sub(user_code):
         print("Invalid ", syntax[10], " syntax. Double check your input.", sep="")
 
 def mul(user_code):
-    if(user_code.split(" ")[0]==syntax[11]): # Multiplication Syntax
-        try:
+    try:
+        # mul [000] 2 or mul 1 [000]
+        if(user_code.split(" ")[1][0]=="["):
+            tempVar1 = ""; num1 = 1; transferData1 = ""
+            transferData1 = user_code.split("["); transferData1 = transferData1[1].split("]")
+            num1 = int(transferData1[0])
+            if(user_code.split(" ")[2][0]=="["):# This multiplies two vars together,
+                tempVar2 = ""; num2 = 1; transferData2 = ""
+                transferData2 = user_code.split("["); transferData2 = transferData2[2].split("]") #This needs to be 2 instead of 1.
+                num2 = int(transferData2[0]);
+                print(int(variables[num1])*int(variables[num2])) #
+            else: 
+                #This only multiples a var in front and a normal number on back together
+                print(int(variables[num1])*int(user_code.split(" ")[2]))
+        elif(user_code.split(" ")[2][0]=="["): # This multiples two vars together,
+            tempVar2 = ""; num2 = 1; transferData2 = ""
+            transferData2 = user_code.split("["); transferData2 = transferData2[1].split("]")
+            num2 = int(transferData2[0])
+            print(int(user_code.split(" ")[1])*int(variables[num2]))
+        else:
             print(int(user_code.split(" ")[1])*int(user_code.split(" ")[2]))
-        except:
-            print("Invalid ", syntax[11], " syntax. Double check your input.", sep="")
+    except:
+        print("Invalid ", syntax[11], " syntax. Double check your input.", sep="")
 
 def div(user_code):
     try:
-        print(int(user_code.split(" ")[1])/int(user_code.split(" ")[2]))
+        # div [000] 2 or div 1 [000]
+        if(user_code.split(" ")[1][0]=="["):
+            tempVar1 = ""; num1 = 1; transferData1 = ""
+            transferData1 = user_code.split("["); transferData1 = transferData1[1].split("]")
+            num1 = int(transferData1[0])
+            if(user_code.split(" ")[2][0]=="["):# This divides two vars together,
+                tempVar2 = ""; num2 = 1; transferData2 = ""
+                transferData2 = user_code.split("["); transferData2 = transferData2[2].split("]") #This needs to be 2 instead of 1.
+                num2 = int(transferData2[0]);
+                print(int(variables[num1])/int(variables[num2])) #
+            else: 
+                #This only divides a var in front and a normal number on back together
+                print(int(variables[num1])/int(user_code.split(" ")[2]))
+        elif(user_code.split(" ")[2][0]=="["): # This divides two vars together,
+            tempVar2 = ""; num2 = 1; transferData2 = ""
+            transferData2 = user_code.split("["); transferData2 = transferData2[1].split("]")
+            num2 = int(transferData2[0])
+            print(int(user_code.split(" ")[1])/int(variables[num2]))
+        else:
+            print(int(user_code.split(" ")[1])/int(user_code.split(" ")[2]))
     except:
         print("Invalid ", syntax[12], " syntax. Double check your input.", sep="")
 
@@ -168,13 +217,33 @@ def var(user_code):
             tempVar = ""; num = 1; transferData = "" #These three lines grab the number
             transferData = user_code.split("["); transferData = transferData[1].split("]")
             num = int(transferData[0])
-            tempVar=user_code.split("'")[1]                    
-            variables.insert(num, tempVar)
-            try:
-                variables.pop(num+1) #This deletes an extra string that will appear.
-                print(variables)
+            try: #This checks to see the user is giving syntax after the '='.
+                tempVar = user_code.split("("); tempVar=tempVar[1].split(")") #tempVar ends up a list
+                #print(tempVar)
+                if(tempVar[0].split(" ")[0]=="add"): #And error appears when executing code when there should be anything wrong.
+                    tempVar = add(tempVar[0]) #Only the first list item has the user's code. var [000] = (add 1 2)
+                elif(tempVar[0].split(" ")[0]=="sub"):
+                    tempVar = sub(tempVar[0])
+                elif(tempVar[0].split(" ")[0]=="mul"):
+                    tempVar = mul(tempVar[0])
+                elif(tempVar[0].split(" ")[0]=="div"):
+                    tempVar = div(tempVar[0])
+                if(tempVar[0].split(" ")[0]=="equal"):
+                    tempVar = equal(tempVar[0])
+                variables.insert(num, tempVar)
+                try:
+                    variables.pop(num+1) #This deletes an extra list item that will appear.
+                    #print(variables)
+                except:
+                    print("", sep="", end="") #Just some empy code to fill the indentation
             except:
-                print(variables)
+                tempVar=user_code.split("'")[1]                    
+                variables.insert(num, tempVar)
+                try:
+                    variables.pop(num+1) #This deletes an extra list item that will appear.
+                    print(variables)
+                except:
+                    print(variables)
 
         elif("=" not in user_code):
             tempVar = ""; num = 1; transferData = ""
