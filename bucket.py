@@ -1,4 +1,4 @@
-# Version 0.2.2a - 4/14/2023 1:41 PM
+# Version 0.2.3a - 4/14/2023 3:14 PM
 
 syntax = ["and", "or", "if", "else", "pour", "var", "while", "fill", "func", "add", "sub", "mul", "div", "loop", "equal", "end of list"]
 variables = [] #This stores the variables for the user
@@ -18,16 +18,12 @@ def Bucket(code_line):# This is the main function of the program. This is where 
         if (user_code==("quit") or user_code=="exit"):
             break
         elif(user_code=="save"):
-            #save = open("demofile2.txt", "w")
-
-            #print(user_data)
-
-            f = open("demofile3.txt", "w")
-            f.write(user_code)
+            f = open("file.bkt", "w")
+            f.write("{}".format(user_data[1:len(user_data)-1]))
             f.close()
-            print (user_code)
+            print(user_data)
         elif(user_code=="open"):
-            f = open("demofile3.txt", "r")
+            f = open("file.bkt", "r")
             print(f.read())
             f.close()
         #while(x<len(syntax)-1): # Detects if the user entered any syntax. - OBSOLETE
@@ -42,47 +38,26 @@ def Bucket(code_line):# This is the main function of the program. This is where 
             div(user_code)
         elif(user_code.split(" ")[0]==syntax[4]): # Pour syntax
             pour(user_code)
-        elif(user_code.split(" ")[0]==syntax[5]):
+        elif(user_code.split(" ")[0]==syntax[5]): # Var Syntax
             var(user_code)
         elif(user_code.split(" ")[0]==syntax[14]): # Equal syntax
             equal(user_code)
-        elif(user_code.split(" ")[0]==syntax[13]): # loop 10 {pour 'hello world'} - This is the loop syntax.
-            try:
-                tempCode = user_code.split("{")
-                tempCode = tempCode[1].split("}")
-                tempCode = tempCode[0]
-                y = 0
-                user_number = int(user_code.split(" ")[1])
-                x=0;
-                while(x!=user_number):
-                    if(tempCode.split(" ")[0]=="pour"):
-                        pour(tempCode) #The pour function - Not working, it prints out invalid syntax when there is valid syntax.
-                    elif(tempCode.split(" ")[0]=="add"):
-                        add(tempCode)
-                    elif(tempCode.split(" ")[0]=="sub"):
-                        sub(tempCode)
-                    elif(tempCode.split(" ")[0]=="div"):
-                        div(tempCode)
-                    elif(tempCode.split(" ")[0]=="mul"):
-                        mul(tempCode)
-                    elif(tempCode.split(" ")[0]=="equal"):
-                        equal(tempCode)
-                    elif(tempCode.split(" ")[0]=="var"):
-                        var(tempCode)
-                    x+=1
-            except:
-                print("Check your syntax.")
-            
+        elif(user_code.split(" ")[0]==syntax[13]): # Loop syntax - 
+        #loop 10 {pour 'hello world'} - This is the loop syntax.
+            loop(user_code)
+        user_data.insert(code_line, user_code)
         #else:
             #print("Invalid syntax given.")
             
-#Modular Test - Failed. Keeping in code for when the loop or if syntax needs it.
+#Syntax code
 def equal(user_code):
     try:
         if(user_code.split(" ")[1]==user_code.split(" ")[2]):
             print("true")
+            return("true")
         else:
             print("false")
+            return("false")
     except:
         print("Nothing to equal.")
 
@@ -127,15 +102,19 @@ def sub(user_code):
                 transferData2 = user_code.split("["); transferData2 = transferData2[2].split("]")
                 num2 = int(transferData2[0])
                 print(int(variables[num1])-int(variables[num2]))
+                return(int(variables[num1])-int(variables[num2]))
             else: #This only adds a var in front and a normal number on bacl together
                 print(int(variables[num1])-int(user_code.split(" ")[2]))
+                return(int(variables[num1])-int(user_code.split(" ")[2]))
         elif(user_code.split(" ")[2][0]=="["): # This adds two vars together,
             tempVar2 = ""; num2 = 1; transferData2 = ""
             transferData2 = user_code.split("["); transferData2 = transferData2[1].split("]")
             num2 = int(transferData2[0])
             print(int(user_code.split(" ")[1])-int(variables[num2]))
+            return(int(user_code.split(" ")[1])-int(variables[num2]))
         else:
             print(int(user_code.split(" ")[1])-int(user_code.split(" ")[2]))
+            return(int(user_code.split(" ")[1])-int(user_code.split(" ")[2]))
     except:
         print("Invalid ", syntax[10], " syntax. Double check your input.", sep="")
 
@@ -150,17 +129,21 @@ def mul(user_code):
                 tempVar2 = ""; num2 = 1; transferData2 = ""
                 transferData2 = user_code.split("["); transferData2 = transferData2[2].split("]") #This needs to be 2 instead of 1.
                 num2 = int(transferData2[0]);
-                print(int(variables[num1])*int(variables[num2])) #
+                print(int(variables[num1])*int(variables[num2]))
+                return(int(variables[num1])*int(variables[num2]))
             else: 
                 #This only multiples a var in front and a normal number on back together
                 print(int(variables[num1])*int(user_code.split(" ")[2]))
+                return(int(variables[num1])*int(user_code.split(" ")[2]))
         elif(user_code.split(" ")[2][0]=="["): # This multiples two vars together,
             tempVar2 = ""; num2 = 1; transferData2 = ""
             transferData2 = user_code.split("["); transferData2 = transferData2[1].split("]")
             num2 = int(transferData2[0])
             print(int(user_code.split(" ")[1])*int(variables[num2]))
+            return(int(user_code.split(" ")[1])*int(variables[num2]))
         else:
             print(int(user_code.split(" ")[1])*int(user_code.split(" ")[2]))
+            return(int(user_code.split(" ")[1])*int(user_code.split(" ")[2]))
     except:
         print("Invalid ", syntax[11], " syntax. Double check your input.", sep="")
 
@@ -175,24 +158,33 @@ def div(user_code):
                 tempVar2 = ""; num2 = 1; transferData2 = ""
                 transferData2 = user_code.split("["); transferData2 = transferData2[2].split("]") #This needs to be 2 instead of 1.
                 num2 = int(transferData2[0]);
-                print(int(variables[num1])/int(variables[num2])) #
+                print(int(variables[num1])/int(variables[num2]))
+                return(int(variables[num1])/int(variables[num2]))
             else: 
                 #This only divides a var in front and a normal number on back together
                 print(int(variables[num1])/int(user_code.split(" ")[2]))
+                return(int(variables[num1])/int(user_code.split(" ")[2]))
         elif(user_code.split(" ")[2][0]=="["): # This divides two vars together,
             tempVar2 = ""; num2 = 1; transferData2 = ""
             transferData2 = user_code.split("["); transferData2 = transferData2[1].split("]")
             num2 = int(transferData2[0])
             print(int(user_code.split(" ")[1])/int(variables[num2]))
+            return(int(user_code.split(" ")[1])/int(variables[num2]))
         else:
             print(int(user_code.split(" ")[1])/int(user_code.split(" ")[2]))
+            return(int(user_code.split(" ")[1])/int(user_code.split(" ")[2]))
     except:
         print("Invalid ", syntax[12], " syntax. Double check your input.", sep="")
 
 def pour(user_code):
     if(user_code.split(" ")[0]==syntax[4]):
         try:
-            if(user_code.split(" ")[1]=="var"): # pour var [000]
+            if(user_code.split(" ")[1]=="var"): # pour var [000] - This no longer works, kept for reference
+                tempVar = ""; num = 1; transferData = ""
+                transferData = user_code.split("["); transferData = transferData[1].split("]")
+                num = int(transferData[0])
+                print(variables[num])
+            elif(user_code.split(" ")[1][0]=="["): # pour [000]
                 tempVar = ""; num = 1; transferData = ""
                 transferData = user_code.split("["); transferData = transferData[1].split("]")
                 num = int(transferData[0])
@@ -219,8 +211,8 @@ def var(user_code):
             num = int(transferData[0])
             try: #This checks to see the user is giving syntax after the '='.
                 tempVar = user_code.split("("); tempVar=tempVar[1].split(")") #tempVar ends up a list
-                #print(tempVar)
-                if(tempVar[0].split(" ")[0]=="add"): #And error appears when executing code when there should be anything wrong.
+                print(tempVar)
+                if(tempVar[0].split(" ")[0]=="add"):
                     tempVar = add(tempVar[0]) #Only the first list item has the user's code. var [000] = (add 1 2)
                 elif(tempVar[0].split(" ")[0]=="sub"):
                     tempVar = sub(tempVar[0])
@@ -228,7 +220,7 @@ def var(user_code):
                     tempVar = mul(tempVar[0])
                 elif(tempVar[0].split(" ")[0]=="div"):
                     tempVar = div(tempVar[0])
-                if(tempVar[0].split(" ")[0]=="equal"):
+                elif(tempVar[0].split(" ")[0]=="equal"):
                     tempVar = equal(tempVar[0])
                 variables.insert(num, tempVar)
                 try:
@@ -252,6 +244,33 @@ def var(user_code):
             print(variables[num])                
     except:
         print("Something is wrong with your var syntax. Double check it.")
+
+def loop(user_code):
+    try:
+        tempCode = user_code.split("{")
+        tempCode = tempCode[1].split("}")
+        tempCode = tempCode[0]
+        y = 0
+        user_number = int(user_code.split(" ")[1])
+        x=0;
+        while(x!=user_number):
+            if(tempCode.split(" ")[0]=="pour"):
+                pour(tempCode) #The pour function - Not working, it prints out invalid syntax when there is valid syntax.
+            elif(tempCode.split(" ")[0]=="add"):
+                add(tempCode)
+            elif(tempCode.split(" ")[0]=="sub"):
+                sub(tempCode)
+            elif(tempCode.split(" ")[0]=="div"):
+                div(tempCode)
+            elif(tempCode.split(" ")[0]=="mul"):
+                mul(tempCode)
+            elif(tempCode.split(" ")[0]=="equal"):
+                equal(tempCode)
+            elif(tempCode.split(" ")[0]=="var"):
+                var(tempCode)
+            x+=1
+    except:
+        print("Check your syntax.")
 
 def save(user_code, code_line):
     user_data.insert(0, code_line)

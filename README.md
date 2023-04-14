@@ -1,4 +1,4 @@
-# Bucket - # Version 0.2.2a
+# Bucket - # Version 0.2.3a
 This is a programming language that I am creating.
 
 I am creating Bucket as the final project for my Computer Information Tech Capstone course at Southern State Community College.
@@ -7,6 +7,8 @@ Bucket may or may not be continued after the completion of the final project.
 
 
 Update Log
+
+**bucket.py** - Varsion 0.2.3a - Fixed a bug that occured in the 'var' syntax. Vars can now be set to the result of the math operations and 'equal' syntax. Made the loop syntax code into a function. Code is now able to be saved with 'save'. It cannot be loaded yet. The 'open' syntax just displays what is in 'file.bkt'.
 
 **bucket.py** - Version 0.2.2a - Fixed the bug that was causing vars to be unable to be added or subtracted from other vars. The 'var' syntax works with the add syntax now. Found a bug where the var will be printed to the screen twice when add is declared to it. Added loop support for the var syntax. A bug appears when setting a var to the result of the add syntax. Changed out the 'add' syntax function code works in its function.
 

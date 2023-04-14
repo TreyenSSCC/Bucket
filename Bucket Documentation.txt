@@ -1,17 +1,19 @@
-This documentation is for Bucket Version 0.2.2a. It may not be accurate for other versions.
+This documentation is for Bucket Version 0.2.3a. It may not be accurate for other versions.
 
 quit: Used to exit the program.
 exit: Used to exit the program.
+save: This will save code to the 'file.bkt' file.
+open: This syntax for 'open' just displays out the save code in 'file.bkt'. It doesn't load the code.
 add: This can add two numbers together. To use follow the example - "add 1 3" or "add [000] 3" or "add 3 [000]".
 sub: This will subtract two numbers. To use follow the example - "sub 2 1" or "sub [000] 3" or "sub 3 [000]" or "sub [000] [001]".
 mul: This will multiply two numbers. To use follow the example - "mul 2 1"  or "mul [000] 3" or "mul 3 [000]" or "mul [000] [001]".
 div: This will divide two numbers. To use follow the example - "div 2 1"  or "div [000] 3" or "div 3 [000]" or "div [000] [001]".
-pour: This prints a string to the screen. To use follow the example - "pour 'hello world'". "pour var [000]".
+pour: This prints a string to the screen. To use follow the example - "pour 'hello world'". "pour [000]".
 var: This will add a string to a variable. To use follow the example - "var [000] = 'hello world'". "var [000]"
-The 'var' can now have the result of 'add' equal to it. For example - "var [000] = (add 1 2)".
+The 'var' can now have the result of any math operation equal to it. For example - "var [000] = (add 1 2)".
 equal: This will check if two instances are equal. To use follow the example - "equal '1' '1'".
 loop: This will run user code a specified amount of times. To use follow the example - "loop 2 {pour 'hello'}"
-The syntax 'var' now works with loop.
+The syntax 'var' now works with loop. Loop cannot loop another loop.
 Note: 'equal' can only compare vars to vars and strings to strings.
 Note: Also vars cannot be used with most other syntax yet
 Note: Unable to combine the different math operations.
