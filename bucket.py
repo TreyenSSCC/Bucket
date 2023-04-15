@@ -1,4 +1,4 @@
-# Version 0.2.5a - 4/15/2023 4:03 PM
+# Version 0.2.6a - 4/15/2023 4:03 PM
 # Copyright (c) 2023 Treyen Wilson
 
 syntax = ["and", "or", "if", "else", "pour", "var", "while", "fill", "func", "add", "sub", "mul", "div", "loop", "equal", "end of list"]
@@ -50,6 +50,7 @@ def Bucket(code_line):# This is the main function of the program. This is where 
                 elif(test[x].split(" ")[0]=="var"):
                     var(test[x])
                 elif(test[x].split(" ")[0]=="loop"):
+                    #print(test[x])
                     loop(test[x])
                 elif(test[x].split(" ")[0]=="if"):
                     if_syntax(test[x])
@@ -194,11 +195,14 @@ def mul(user_code):
 
 def div(user_code):
     try:
+        #print(user_code)
         # div [000] 2 or div 1 [000]
         if(user_code.split(" ")[1][0]=="["):
+            #print(user_code.split(" "))
             tempVar1 = ""; num1 = 1; transferData1 = ""
             transferData1 = user_code.split("["); transferData1 = transferData1[1].split("]")
             num1 = int(transferData1[0])
+            #print(num1, transferData1)
             if(user_code.split(" ")[2][0]=="["):# This divides two vars together,
                 tempVar2 = ""; num2 = 1; transferData2 = ""
                 transferData2 = user_code.split("["); transferData2 = transferData2[2].split("]") #This needs to be 2 instead of 1.
@@ -260,6 +264,7 @@ def var(user_code):
                 if(tempVar[0].split(" ")[0]=="add"):
                     tempVar = add(tempVar[0]) #Only the first list item has the user's code. var [000] = (add 1 2)
                 elif(tempVar[0].split(" ")[0]=="sub"):
+                    #print(tempVar)
                     tempVar = sub(tempVar[0])
                 elif(tempVar[0].split(" ")[0]=="mul"):
                     tempVar = mul(tempVar[0])

@@ -1,4 +1,4 @@
-# Bucket - Version 0.2.5a
+# Bucket - Version 0.2.6a
 This is a programming language that I am creating.
 
 I am creating Bucket as the final project for my Computer Information Tech Capstone course at Southern State Community College.
@@ -7,6 +7,8 @@ Bucket may or may not be continued after the completion of the final project.
 
 
 Update Log
+
+**bucket.py** - Version 0.2.6a - Fixed a bug that appeared when using the 'open' syntax.
 
 **bucket.py** - Version 0.2.5a - The 'loop' syntax can now execute multiple syntax. However, it will execute the first syntax the given amount of times and them execute the second syntax and so on.
 
