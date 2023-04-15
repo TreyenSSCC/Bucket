@@ -1,4 +1,4 @@
-# Bucket - # Version 0.2.3a
+# Bucket - Version 0.2.4a
 This is a programming language that I am creating.
 
 I am creating Bucket as the final project for my Computer Information Tech Capstone course at Southern State Community College.
@@ -7,6 +7,8 @@ Bucket may or may not be continued after the completion of the final project.
 
 
 Update Log
+
+**bucket.py** - Version 0.2.4a - Fixed a bug that appeared with var being declared to any math operation. Added if else syntax. It works with every other piece of syntax except for if, when if is used inside of another if it is very buggy. The 'open' and 'save' syntax will work now. The open works by exceuting everything stored in 'file.bkt' and listing the results.
 
 **bucket.py** - Varsion 0.2.3a - Fixed a bug that occured in the 'var' syntax. Vars can now be set to the result of the math operations and 'equal' syntax. Made the loop syntax code into a function. Code is now able to be saved with 'save'. It cannot be loaded yet. The 'open' syntax just displays what is in 'file.bkt'.
 

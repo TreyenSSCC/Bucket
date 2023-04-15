@@ -1,8 +1,9 @@
-# Version 0.2.3a - 4/14/2023 3:14 PM
+# Version 0.2.4a - 4/15/2023 11:52 AM
+# Copyright (c) 2023 Treyen Wilson
 
 syntax = ["and", "or", "if", "else", "pour", "var", "while", "fill", "func", "add", "sub", "mul", "div", "loop", "equal", "end of list"]
 variables = [] #This stores the variables for the user
-user_data = [] # This stores what the user has typed.
+user_data = [0] # This stores what the user has typed.
 user_functions = [] # This stores the user created functions.
 
 #Spill/pour is a print, fill is an input
@@ -13,19 +14,48 @@ def Bucket(code_line):# This is the main function of the program. This is where 
     while True:
         x=0
         code_line+=1
+        user_data[0] = code_line-1
         print(code_line, ": ", sep="", end="")
         user_code = input("").lower()
         if (user_code==("quit") or user_code=="exit"):
             break
         elif(user_code=="save"):
             f = open("file.bkt", "w")
-            f.write("{}".format(user_data[1:len(user_data)-1]))
+            f.write("{}".format(user_data[0:len(user_data)]))
+            #print(user_data)
             f.close()
-            print(user_data)
-        elif(user_code=="open"):
-            f = open("file.bkt", "r")
-            print(f.read())
+            #print(user_data) #Debug
+        elif(user_code=="open"): #Input : '[5, 'add 4 5', 'sub 7 4', 'mul 985 4', 'div 4837 3', "pour 'hi'", 'add 4 5']'
+            f = open("file.bkt", "r") #Open syntax
+            test = [0]
+            test = eval(f.read())
+            #user_data = user_data[1:len(user_data)-1]
+            #c = 0 #This is to loop through user_data
+            code_line=int(test[0])
+            x = 1
+            while(x<test[0]):
+                #equal(test[x])
+                if(test[x].split(" ")[0]=="equal"):
+                    equal(test[x])
+                elif(test[x].split(" ")[0]=="add"):
+                    add(test[x])
+                elif(test[x].split(" ")[0]=="sub"):
+                    sub(test[x])
+                elif(test[x].split(" ")[0]=="mul"):
+                    mul(test[x])
+                elif(test[x].split(" ")[0]=="div"):
+                    div(test[x])
+                elif(test[x].split(" ")[0]=="pour"):
+                    pour(test[x])
+                elif(test[x].split(" ")[0]=="var"):
+                    var(test[x])
+                elif(test[x].split(" ")[0]=="loop"):
+                    loop(test[x])
+                elif(test[x].split(" ")[0]=="if"):
+                    if_syntax(test[x])
+                x+=1
             f.close()
+            #user_data = test
         #while(x<len(syntax)-1): # Detects if the user entered any syntax. - OBSOLETE
         elif(user_code.split(" ")[0]==syntax[9]): #Add syntax
             add(user_code)
@@ -45,7 +75,10 @@ def Bucket(code_line):# This is the main function of the program. This is where 
         elif(user_code.split(" ")[0]==syntax[13]): # Loop syntax - 
         #loop 10 {pour 'hello world'} - This is the loop syntax.
             loop(user_code)
-        user_data.insert(code_line, user_code)
+        elif(user_code.split(" ")[0]==syntax[2]): #If code
+            if_syntax(user_code)
+        user_data.insert(code_line, user_code) #This saves the user code in a list for later use.
+        #print(user_data) #Debug
         #else:
             #print("Invalid syntax given.")
             
@@ -57,6 +90,17 @@ def equal(user_code):
             return("true")
         else:
             print("false")
+            return("false")
+    except:
+        print("Nothing to equal.")
+
+def sequal(user_code): #This is a special version of equal just for the if syntax.
+    try:
+        if(user_code.split(" ")[1]==user_code.split(" ")[2]):
+            #print("true")
+            return("true")
+        else:
+            #print("false")
             return("false")
     except:
         print("Nothing to equal.")
@@ -211,7 +255,7 @@ def var(user_code):
             num = int(transferData[0])
             try: #This checks to see the user is giving syntax after the '='.
                 tempVar = user_code.split("("); tempVar=tempVar[1].split(")") #tempVar ends up a list
-                print(tempVar)
+                #print(tempVar)
                 if(tempVar[0].split(" ")[0]=="add"):
                     tempVar = add(tempVar[0]) #Only the first list item has the user's code. var [000] = (add 1 2)
                 elif(tempVar[0].split(" ")[0]=="sub"):
@@ -236,6 +280,48 @@ def var(user_code):
                     print(variables)
                 except:
                     print(variables)
+
+        elif("=" not in user_code):
+            tempVar = ""; num = 1; transferData = ""
+            transferData = user_code.split("["); transferData = transferData[1].split("]")
+            num = int(transferData[0])
+            print(variables[num])                
+    except:
+        print("Something is wrong with your var syntax. Double check it.")
+
+def svar(user_code): #This var function is for special circumstances where the entire list of vars does not need to be seen.
+    try:                # var [000] = 'Hello'
+        if("=" in user_code):
+            tempVar = ""; num = 1; transferData = "" #These three lines grab the number
+            transferData = user_code.split("["); transferData = transferData[1].split("]")
+            num = int(transferData[0])
+            try: #This checks to see the user is giving syntax after the '='.
+                tempVar = user_code.split("("); tempVar=tempVar[1].split(")") #tempVar ends up a list
+                #print(tempVar) This was used to debug
+                if(tempVar[0].split(" ")[0]=="add"):
+                    tempVar = add(tempVar[0]) #Only the first list item has the user's code. var [000] = (add 1 2)
+                elif(tempVar[0].split(" ")[0]=="sub"):
+                    tempVar = sub(tempVar[0])
+                elif(tempVar[0].split(" ")[0]=="mul"):
+                    tempVar = mul(tempVar[0])
+                elif(tempVar[0].split(" ")[0]=="div"):
+                    tempVar = div(tempVar[0])
+                elif(tempVar[0].split(" ")[0]=="equal"):
+                    tempVar = equal(tempVar[0])
+                variables.insert(num, tempVar)
+                try:
+                    variables.pop(num+1) #This deletes an extra list item that will appear.
+                    #print(variables)
+                except:
+                    print("", sep="", end="") #Just some empy code to fill the indentation
+            except:
+                tempVar=user_code.split("'")[1]                    
+                variables.insert(num, tempVar)
+                try:
+                    variables.pop(num+1) #This deletes an extra list item that will appear.
+                    #print(variables)
+                except:
+                    print("", sep="", end="") #Empty code so that python does throw an error.
 
         elif("=" not in user_code):
             tempVar = ""; num = 1; transferData = ""
@@ -272,8 +358,61 @@ def loop(user_code):
     except:
         print("Check your syntax.")
 
+def if_syntax(user_code): # if equal 1 1: pour 'hello'; else: add 1 2;
+    try:
+        tempCheckCode = ""
+        if(user_code.split(" ")[1]=="equal"):
+            #This makes the comparison code able to be interpreted by Bucket.
+            tempCheckCode = user_code.split(" ")[1]+" "+user_code.split(" ")[2]+" "+user_code.split(" ")[3][0:len(user_code.split(" ")[3])-1]
+            if(sequal(tempCheckCode)=="true"):
+                tempIfCode = user_code.split(":")[1].split(";")[0]
+                tempIfCode=tempIfCode[1:len(tempIfCode)]
+                #Below is checking for the syntax
+                if(tempIfCode.split(" ")[0]=="equal"):
+                    equal(tempIfCode)
+                elif(tempIfCode.split(" ")[0]=="add"):
+                    add(tempIfCode)
+                elif(tempIfCode.split(" ")[0]=="sub"):
+                    sub(tempIfCode)
+                elif(tempIfCode.split(" ")[0]=="mul"):
+                    mul(tempIfCode)
+                elif(tempIfCode.split(" ")[0]=="div"):
+                    div(tempIfCode)
+                elif(tempIfCode.split(" ")[0]=="pour"):
+                    pour(tempIfCode)
+                elif(tempIfCode.split(" ")[0]=="var"):
+                    var(tempIfCode)
+                elif(tempIfCode.split(" ")[0]=="loop"):
+                    loop(tempIfCode)
+                elif(tempIfCode.split(" ")[0]=="if"):
+                    if_syntax(tempIfCode)
+            elif(sequal(tempCheckCode)=="false"):
+                tempElseCode = user_code.split("else: ")[1].split(";")[0]
+                if(tempElseCode.split(" ")[0]=="equal"):
+                    equal(tempElseCode)
+                elif(tempElseCode.split(" ")[0]=="add"):
+                    add(tempElseCode)
+                elif(tempElseCode.split(" ")[0]=="sub"):
+                    sub(tempElseCode)
+                elif(tempElseCode.split(" ")[0]=="mul"):
+                    mul(tempElseCode)
+                elif(tempElseCode.split(" ")[0]=="div"):
+                    div(tempElseCode)
+                elif(tempElseCode.split(" ")[0]=="pour"):
+                    pour(tempElseCode)
+                elif(tempElseCode.split(" ")[0]=="var"):
+                    var(tempElseCode)
+                elif(tempElseCode.split(" ")[0]=="loop"):
+                    loop(tempElseCode)
+                elif(tempElseCode.split(" ")[0]=="if"):
+                    if_syntax(tempElseCode)
+            #print(tempCheckCode)
+    except:
+        #print(tempCheckCode)
+        print("Something is wrong with your if code.")
 def save(user_code, code_line):
-    user_data.insert(0, code_line)
-    user_data.insert(code_line, user_code)
+    #user_data.insert(0, code_line)
+    #user_data.insert(code_line, user_code)
+    print("",sep="",end="") #Empty code to make the function work
 
 Bucket(0)
