@@ -1,1 +1,1 @@
-[6, 'mul 1 2', 'sub 5 6', "var [0] = '4'", 'mul [0] 4', 'div [0] 4', "if equal 1 1: pour 'yep';"]
+[3, "var [0] = '1'", "var [1] = '2'", 'loop 5 {var [0] = (add [1] [0]) 1.var [1] = (div [0] [1]) 2.}']

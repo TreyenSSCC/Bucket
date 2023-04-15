@@ -1,4 +1,4 @@
-This documentation is for Bucket Version 0.2.4a. It may not be accurate for other versions.
+This documentation is for Bucket Version 0.2.5a. It may not be accurate for other versions.
 
 quit: Used to exit the program.
 exit: Used to exit the program.
@@ -13,8 +13,8 @@ var: This will add a string to a variable. To use follow the example - "var [000
 Numbers must be in '' in order to be declared to a var. Like "var [0] = '1'". The math operations will automatically detect if it is a number or not.
 The 'var' can now have the result of any math operation equal to it. For example - "var [000] = (add 1 2)".
 equal: This will check if two instances are equal. To use follow the example - "equal '1' '1'".
-loop: This will run user code a specified amount of times. To use follow the example - "loop 2 {pour 'hello'}"
-The syntax 'var' now works with loop. Loop cannot loop another loop.
+loop: This will run user code a specified amount of times. To use follow the example - "loop 2 {pour 'hello' 1.add 2 3 2.}"
+The syntax 'var' now works with loop. Loop cannot loop another loop. Loop will first execute the first given syntax the given amount of times and the the second syntax a given amount of times and so on.
 If: The if and else syntax now works. It cannot work with an if statement inside of it.
 Note: if and else must be used together, if the two inputs are not equal. "if equal 1 1: pour 'hi'; else: add 3 4;".
 Note: Using if inside of an if is buggy currently.

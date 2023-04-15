@@ -1,4 +1,4 @@
-# Version 0.2.4a - 4/15/2023 11:52 AM
+# Version 0.2.5a - 4/15/2023 4:03 PM
 # Copyright (c) 2023 Treyen Wilson
 
 syntax = ["and", "or", "if", "else", "pour", "var", "while", "fill", "func", "add", "sub", "mul", "div", "loop", "equal", "end of list"]
@@ -74,7 +74,8 @@ def Bucket(code_line):# This is the main function of the program. This is where 
             equal(user_code)
         elif(user_code.split(" ")[0]==syntax[13]): # Loop syntax - 
         #loop 10 {pour 'hello world'} - This is the loop syntax.
-            loop(user_code)
+            #loop(user_code)
+            loop(user_code) #This is to test out new features for the loop
         elif(user_code.split(" ")[0]==syntax[2]): #If code
             if_syntax(user_code)
         user_data.insert(code_line, user_code) #This saves the user code in a list for later use.
@@ -332,29 +333,41 @@ def svar(user_code): #This var function is for special circumstances where the e
         print("Something is wrong with your var syntax. Double check it.")
 
 def loop(user_code):
-    try:
+    try: #Example code "loop 10 {pour '1' 1.add 3 4 2.}"
         tempCode = user_code.split("{")
         tempCode = tempCode[1].split("}")
-        tempCode = tempCode[0]
+        tempCode = tempCode[0] #"pour '1' 1. add 3 4 2."
+        tempNum = len(tempCode.split("."))
+        tempCode = tempCode.split(".")[0:tempNum-1]
+        #print(tempCode) For debug
+        t = 0
+        while(t<tempNum-1):
+            tempCode[t]=tempCode[t][0:len(tempCode[t])-2]
+            t+=1
+        #print(tempCode) For debug
+        t=0
         y = 0
         user_number = int(user_code.split(" ")[1])
-        x=0;
-        while(x!=user_number):
-            if(tempCode.split(" ")[0]=="pour"):
-                pour(tempCode) #The pour function - Not working, it prints out invalid syntax when there is valid syntax.
-            elif(tempCode.split(" ")[0]=="add"):
-                add(tempCode)
-            elif(tempCode.split(" ")[0]=="sub"):
-                sub(tempCode)
-            elif(tempCode.split(" ")[0]=="div"):
-                div(tempCode)
-            elif(tempCode.split(" ")[0]=="mul"):
-                mul(tempCode)
-            elif(tempCode.split(" ")[0]=="equal"):
-                equal(tempCode)
-            elif(tempCode.split(" ")[0]=="var"):
-                var(tempCode)
-            x+=1
+        x=0
+        while(t<tempNum-1):
+            while(x!=user_number):
+                if(tempCode[t].split(" ")[0]=="pour"):
+                    pour(tempCode[t])
+                elif(tempCode[t].split(" ")[0]=="add"):
+                    add(tempCode[t])
+                elif(tempCode[t].split(" ")[0]=="sub"):
+                    sub(tempCode[t])
+                elif(tempCode[t].split(" ")[0]=="div"):
+                    div(tempCode[t])
+                elif(tempCode[t].split(" ")[0]=="mul"):
+                    mul(tempCode[t])
+                elif(tempCode[t].split(" ")[0]=="equal"):
+                    equal(tempCode[t])
+                elif(tempCode[t].split(" ")[0]=="var"):
+                    var(tempCode[t])
+                x+=1
+            t+=1
+            x=0
     except:
         print("Check your syntax.")
 

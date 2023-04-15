@@ -1,4 +1,4 @@
-# Bucket - Version 0.2.4a
+# Bucket - Version 0.2.5a
 This is a programming language that I am creating.
 
 I am creating Bucket as the final project for my Computer Information Tech Capstone course at Southern State Community College.
@@ -7,6 +7,8 @@ Bucket may or may not be continued after the completion of the final project.
 
 
 Update Log
+
+**bucket.py** - Version 0.2.5a - The 'loop' syntax can now execute multiple syntax. However, it will execute the first syntax the given amount of times and them execute the second syntax and so on.
 
 **bucket.py** - Version 0.2.4a - Fixed a bug that appeared with var being declared to any math operation. Added if else syntax. It works with every other piece of syntax except for if, when if is used inside of another if it is very buggy. The 'open' and 'save' syntax will work now. The open works by exceuting everything stored in 'file.bkt' and listing the results.
 
