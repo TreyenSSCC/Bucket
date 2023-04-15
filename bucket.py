@@ -33,7 +33,7 @@ def Bucket(code_line):# This is the main function of the program. This is where 
             #c = 0 #This is to loop through user_data
             code_line=int(test[0])
             x = 1
-            while(x<test[0]):
+            while(x<test[0]+1):
                 #equal(test[x])
                 if(test[x].split(" ")[0]=="equal"):
                     equal(test[x])
