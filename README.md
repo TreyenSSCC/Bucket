@@ -8,7 +8,7 @@ Bucket may or may not be continued after the completion of the final project.
 
 Update Log
 
-**bucket.py** - Version 0.2.7a - Fixed a bug that caused an error message to not appear when given the loop code did not have numbers.
+**bucket.py** - Version 0.2.7a - Fixed a bug that caused an error message to not appear when the loop code given was incorrect without numbers.
 
 **bucket.py** - Version 0.2.6a - Fixed a bug that appeared when using the 'open' syntax.
 
