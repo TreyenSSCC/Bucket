@@ -1,7 +1,8 @@
-This documentation is for Bucket Version 0.2.8a. It may not be accurate for other versions.
+This documentation is for Bucket Version 0.2.8b. It may not be accurate for other versions.
 
 quit: Used to exit the program.
 exit: Used to exit the program.
+drop: In an experimental phase.
 save: This will save code to the 'file.bkt' file. To save there must be more than one line of code.
 open: This syntax for 'open' will load code from the 'file.bkt' and will execute everything from it and list it.
 add: This can add two numbers together. To use follow the example - "add 1 3" or "add [000] 3" or "add 3 [000]".

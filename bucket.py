@@ -1,10 +1,12 @@
-# Version 0.2.8a - 4/15/2023 10:04 AM
+# Version 0.2.8b - 4/17/2023 3:48 AM
 # Copyright (c) 2023 Treyen Wilson
+# This is the b version of Bucket.
 
 syntax = ["and", "or", "if", "else", "pour", "var", "while", "fill", "func", "add", "sub", "mul", "div", "loop", "equal", "end of list"]
 variables = [] #This stores the variables for the user
 user_data = [0] # This stores what the user has typed.
 user_functions = [] # This stores the user created functions.
+syntaxAdded = "no"
 
 #Spill/pour is a print, fill is an input
 # The syntax list will contain all of the syntax for Bucket.
@@ -19,6 +21,10 @@ def Bucket(code_line):# This is the main function of the program. This is where 
             user_code = input("").lower()
             if (user_code==("quit") or user_code=="exit"):
                 break
+            elif(user_code=="drop"):
+                f = open("water.bkt", "r")
+                storage = eval(f.read())
+                exec(storage)
             elif(user_code=="save"):
                 f = open("file.bkt", "w")
                 f.write("{}".format(user_data[0:len(user_data)]))
@@ -84,8 +90,7 @@ def Bucket(code_line):# This is the main function of the program. This is where 
                 print("Invalid syntax given.")
             user_data.insert(code_line, user_code) #This saves the user code in a list for later use.
     except:
-        print("Something went wrong.")
-            
+        print("Something went wrong.")       
 #Syntax code
 def equal(user_code):
     try:
