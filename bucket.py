@@ -1,4 +1,4 @@
-# Version 0.2.6a - 4/15/2023 4:03 PM
+# Version 0.2.7a - 4/15/2023 10:04 AM
 # Copyright (c) 2023 Treyen Wilson
 
 syntax = ["and", "or", "if", "else", "pour", "var", "while", "fill", "func", "add", "sub", "mul", "div", "loop", "equal", "end of list"]
@@ -338,43 +338,46 @@ def svar(user_code): #This var function is for special circumstances where the e
         print("Something is wrong with your var syntax. Double check it.")
 
 def loop(user_code):
-    try: #Example code "loop 10 {pour '1' 1.add 3 4 2.}"
-        tempCode = user_code.split("{")
-        tempCode = tempCode[1].split("}")
-        tempCode = tempCode[0] #"pour '1' 1. add 3 4 2."
-        tempNum = len(tempCode.split("."))
-        tempCode = tempCode.split(".")[0:tempNum-1]
-        #print(tempCode) For debug
-        t = 0
-        while(t<tempNum-1):
-            tempCode[t]=tempCode[t][0:len(tempCode[t])-2]
-            t+=1
-        #print(tempCode) For debug
-        t=0
-        y = 0
-        user_number = int(user_code.split(" ")[1])
-        x=0
-        while(t<tempNum-1):
-            while(x!=user_number):
-                if(tempCode[t].split(" ")[0]=="pour"):
-                    pour(tempCode[t])
-                elif(tempCode[t].split(" ")[0]=="add"):
-                    add(tempCode[t])
-                elif(tempCode[t].split(" ")[0]=="sub"):
-                    sub(tempCode[t])
-                elif(tempCode[t].split(" ")[0]=="div"):
-                    div(tempCode[t])
-                elif(tempCode[t].split(" ")[0]=="mul"):
-                    mul(tempCode[t])
-                elif(tempCode[t].split(" ")[0]=="equal"):
-                    equal(tempCode[t])
-                elif(tempCode[t].split(" ")[0]=="var"):
-                    var(tempCode[t])
-                x+=1
-            t+=1
+    if(user_code[len(user_code)-2]=="."):
+        try: #Example code "loop 10 {pour '1' 1.add 3 4 2.}"
+            tempCode = user_code.split("{")
+            tempCode = tempCode[1].split("}")
+            tempCode = tempCode[0] #"pour '1' 1. add 3 4 2."
+            tempNum = len(tempCode.split("."))
+            tempCode = tempCode.split(".")[0:tempNum-1]
+            #print(tempCode) For debug
+            t = 0
+            while(t<tempNum-1):
+                tempCode[t]=tempCode[t][0:len(tempCode[t])-2]
+                t+=1
+            #print(tempCode) For debug
+            t=0
+            y = 0
+            user_number = int(user_code.split(" ")[1])
             x=0
-    except:
-        print("Check your syntax.")
+            while(t<tempNum-1):
+                while(x!=user_number):
+                    if(tempCode[t].split(" ")[0]=="pour"):
+                        pour(tempCode[t])
+                    elif(tempCode[t].split(" ")[0]=="add"):
+                        add(tempCode[t])
+                    elif(tempCode[t].split(" ")[0]=="sub"):
+                        sub(tempCode[t])
+                    elif(tempCode[t].split(" ")[0]=="div"):
+                        div(tempCode[t])
+                    elif(tempCode[t].split(" ")[0]=="mul"):
+                        mul(tempCode[t])
+                    elif(tempCode[t].split(" ")[0]=="equal"):
+                        equal(tempCode[t])
+                    elif(tempCode[t].split(" ")[0]=="var"):
+                        var(tempCode[t])
+                    x+=1
+                t+=1
+                x=0
+        except:
+            print("Check your syntax.")
+    else:
+        print("You forgot the number in your loop.")
 
 def if_syntax(user_code): # if equal 1 1: pour 'hello'; else: add 1 2;
     try:
