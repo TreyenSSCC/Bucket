@@ -8,7 +8,7 @@ Bucket may or may not be continued after the completion of the final project.
 
 Update Log
 
-**bucket.py** Version 0.2.8a - Made equal be able to compare vars and non vars together. Fixed a bug with the loop syntax that caused it to cut off '.' when using pour. Also, changed how loop numbering works from 'loop 5 {add 1 2 1.} to 'loop 5 {add 1 2 1"}'.
+**bucket.py** - Version 0.2.8a - Made equal be able to compare vars and non vars together. Fixed a bug with the loop syntax that caused it to cut off '.' when using pour. Also, changed how loop numbering works from 'loop 5 {add 1 2 1.} to 'loop 5 {add 1 2 1"}'.
 
 **bucket.py** - Version 0.2.7a - Fixed a bug that caused an error message to not appear when the loop code given was incorrect without numbers.
 
