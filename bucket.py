@@ -509,4 +509,10 @@ def save(user_code, code_line):
     #user_data.insert(code_line, user_code)
     print("",sep="",end="") #Empty code to make the function work
 
+def check_var(user_code): #This is for when Bucket needs to check what var needs to called. - Made for future use.
+    tempVar = ""; num = 1; transferData = ""
+    transferData = user_code.split("["); transferData = transferData[1].split("]")
+    num = int(transferData[0])
+    return(tempVar, num)
+
 Bucket(0)
