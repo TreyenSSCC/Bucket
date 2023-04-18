@@ -1,13 +1,13 @@
-# Version 0.2.8b - 4/17/2023 3:48 AM
+# Version 0.2.9b - 4/18/2023 3:49 PM
 # Copyright (c) 2023 Treyen Wilson
 # This is the b version of Bucket.
 
 syntax = ["and", "or", "if", "else", "pour", "var", "while", "fill", "func", "add", "sub", "mul", "div", "loop", "equal", "end of list"]
 variables = [] #This stores the variables for the user
 user_data = [0] # This stores what the user has typed.
-user_functions = [] # This stores the user created functions.
+user_functions = [0] # This stores the user created functions.
 syntaxAdded = "no"
-
+code_line = 1
 #Spill/pour is a print, fill is an input
 # The syntax list will contain all of the syntax for Bucket.
 
@@ -60,6 +60,9 @@ def Bucket(code_line):# This is the main function of the program. This is where 
                         loop(test[x])
                     elif(test[x].split(" ")[0]=="if"):
                         if_syntax(test[x])
+                    elif(test[x].split(" ")[0]=="func"):
+                        sfunc(test[x])
+                    
                     x+=1
                 f.close()
                 #user_data = test
@@ -85,7 +88,8 @@ def Bucket(code_line):# This is the main function of the program. This is where 
                 loop(user_code) #This is to test out new features for the loop
             elif(user_code.split(" ")[0]==syntax[2]): #If code
                 if_syntax(user_code)
-            #print(user_data) #Debug
+            elif(user_code.split(" ")[0]==syntax[8]): #This detects if a user is making a function.
+                user_code = func(user_code)
             else:
                 print("Invalid syntax given.")
             user_data.insert(code_line, user_code) #This saves the user code in a list for later use.
@@ -135,6 +139,138 @@ def equal(user_code):
                 return("false")        
     except:
         print("Nothing to equal.")
+
+def func(user_code):
+    # func [000] =
+    # | var [0] = 'Hi there.'
+    # | pour [0]
+    # | add 4 5
+    # | end
+    # "func [0] =| var [0] = 'hi there.'| pour [0]| add 4 5| end"
+    try:
+        #if(user_code.split(" ")[0]==syntax[8] and user_code.split(" ")[0]=="[all]"): This is a planned way to see every function the user has.
+        #    print(user_functions)
+        if(user_code.split(" ")[0]==syntax[8]):
+            if(user_code.split("| ")[0][len(user_code.split("| ")[0])-1]=="="):
+                while(True):
+                    #print(user_code)
+                    user_code=user_code+input("")
+                    if(user_code.split("| ")[len(user_code.split("| "))-1]=="end"):
+                        
+                        tempFuncNum = len(user_code.split("| "))-2 #This will store how many commands are in the function
+                        tempVar = ""; num = 1; transferData = "" #These three lines grab the number from the func
+                        transferData = user_code.split("["); transferData = transferData[1].split("]")
+                        num = int(transferData[0])
+                        user_functions.insert(num, user_code)
+                        try:
+                            user_functions.pop(num+1) #This deletes an extra list item that will appear.
+                            #print(variables)
+                        except:
+                            print("", sep="", end="") #Just some empy code to fill the indentation                    
+                        #user_functions[num] = user_code 
+                        break
+            elif(user_code.split(" ")[1][0]=="["):
+                
+                tempVar = ""; num = 1; transferData = "" #These three lines grab the number from the func
+                transferData = user_code.split("["); transferData = transferData[1].split("]")
+                num = int(transferData[0])
+                tempFuncCode = user_functions[num]
+                tempFuncNum = len(tempFuncCode.split("| "))-2 # This is to find how many commands there are. It needs to start at 1!
+                k = 1
+                #print(tempFuncNum)
+                while(k<tempFuncNum+1): #tempFuncNum is one higher than the last command.
+                    if(tempFuncCode.split("| ")[k].split(" ")[0]=="add"):
+                        add(tempFuncCode.split("| ")[k])
+                    elif(tempFuncCode.split("| ")[k].split(" ")[0]=="pour"):
+                        pour(tempFuncCode.split("| ")[k])
+                    elif(tempFuncCode.split("| ")[k].split(" ")[0]=="sub"):
+                        sub(tempFuncCode.split("| ")[k])
+                    elif(tempFuncCode.split("| ")[k].split(" ")[0]=="mul"):
+                        mul(tempFuncCode.split("| ")[k])
+                    elif(tempFuncCode.split("| ")[k].split(" ")[0]=="div"):
+                        div(tempFuncCode.split("| ")[k])
+                    elif(tempFuncCode.split("| ")[k].split(" ")[0]=="var"):
+                        svar(tempFuncCode.split("| ")[k])
+                    elif(tempFuncCode.split("| ")[k].split(" ")[0]=="loop"):
+                        loop(tempFuncCode.split("| ")[k])
+                    elif(tempFuncCode.split("| ")[k].split(" ")[0]=="if"):
+                        if_syntax(tempFuncCode.split("| ")[k])
+                    elif(tempFuncCode.split("| ")[k].split(" ")[0]=="func"):
+                        func(tempFuncCode.split("| ")[k])
+                    else:
+                        #print(k, tempFuncCode.split("| ")[k])
+                        print("Something is wrong with your func syntax.")
+                    k+=1
+
+            else:
+                print("No valid func code.")
+        #user_data.insert(code_line, user_code) #This saves the function code for the file.
+        return user_code
+    except:
+        print("The func syntax is not complete.")
+
+def sfunc(user_code): # This is used when the input needs to be on a single line.
+    # func [000] =
+    # | var [0] = 'Hi there.'
+    # | pour [0]
+    # | add 4 5
+    # | end
+    # "func [0] =| var [0] = 'hi there.'| pour [0]| add 4 5| end"
+    try:
+        if(user_code.split(" ")[0]==syntax[8]):
+            if(user_code.split("| ")[0][len(user_code.split("| ")[0])-1]=="="):
+                while(True):
+                    #print(user_code)
+                    if(user_code.split("| ")[len(user_code.split("| "))-1]=="end"):
+                        user_data.insert(code_line, user_code) #This saves the function code for the file.
+                        tempFuncNum = len(user_code.split("| "))-2 #This will store how many commands are in the function
+                        tempVar = ""; num = 1; transferData = "" #These three lines grab the number from the func
+                        transferData = user_code.split("["); transferData = transferData[1].split("]")
+                        num = int(transferData[0])
+                        user_functions.insert(num, user_code)
+                        try:
+                            user_functions.pop(num+1) #This deletes an extra list item that will appear.
+                            #print(variables)
+                        except:
+                            print("", sep="", end="") #Just some empy code to fill the indentation                    
+                        #user_functions[num] = user_code 
+                        break
+            elif(user_code.split(" ")[1][0]=="["):
+                tempVar = ""; num = 1; transferData = "" #These three lines grab the number from the func
+                transferData = user_code.split("["); transferData = transferData[1].split("]")
+                num = int(transferData[0])
+                tempFuncCode = user_functions[num]
+                tempFuncNum = len(tempFuncCode.split("| "))-2 # This is to find how many commands there are. It needs to start at 1!
+                k = 1
+                #print(tempFuncNum)
+                while(k<tempFuncNum+1): #tempFuncNum is one higher than the last command.
+                    if(tempFuncCode.split("| ")[k].split(" ")[0]=="add"):
+                        add(tempFuncCode.split("| ")[k])
+                    elif(tempFuncCode.split("| ")[k].split(" ")[0]=="pour"):
+                        pour(tempFuncCode.split("| ")[k])
+                    elif(tempFuncCode.split("| ")[k].split(" ")[0]=="sub"):
+                        sub(tempFuncCode.split("| ")[k])
+                    elif(tempFuncCode.split("| ")[k].split(" ")[0]=="mul"):
+                        mul(tempFuncCode.split("| ")[k])
+                    elif(tempFuncCode.split("| ")[k].split(" ")[0]=="div"):
+                        div(tempFuncCode.split("| ")[k])
+                    elif(tempFuncCode.split("| ")[k].split(" ")[0]=="var"):
+                        svar(tempFuncCode.split("| ")[k])
+                    elif(tempFuncCode.split("| ")[k].split(" ")[0]=="loop"):
+                        loop(tempFuncCode.split("| ")[k])
+                    elif(tempFuncCode.split("| ")[k].split(" ")[0]=="if"):
+                        if_syntax(tempFuncCode.split("| ")[k])
+                    elif(tempFuncCode.split("| ")[k].split(" ")[0]=="func"):
+                        func(tempFuncCode.split("| ")[k])
+                    else:
+                        #print(k, tempFuncCode.split("| ")[k])
+                        print("Something is wrong with your func syntax.")
+                    k+=1
+
+            else:
+                print("No valid func code.")
+    except:
+        print("The func syntax is not complete.")
 
 def sequal(user_code): #This is a special version of equal just for the if syntax.
     try:
@@ -446,6 +582,8 @@ def loop(user_code):
                         var(tempCode[t])
                     elif(tempCode[t].split(" ")[0]=="if"):
                         if_syntax(tempCode[t])
+                    elif(tempCode[t].split(" ")[0]=="func"):
+                        func(tempCode[t])
                     
                     x+=1
                 t+=1
@@ -483,6 +621,8 @@ def if_syntax(user_code): # if equal 1 1: pour 'hello'; else: add 1 2;
                     loop(tempIfCode)
                 elif(tempIfCode.split(" ")[0]=="if"):
                     if_syntax(tempIfCode)
+                elif(tempIfCode.split(" ")[0]=="func"):
+                    func(tempIfCode)
             elif(sequal(tempCheckCode)=="false"):
                 tempElseCode = user_code.split("else: ")[1].split(";")[0]
                 #print(tempElseCode)
@@ -505,10 +645,13 @@ def if_syntax(user_code): # if equal 1 1: pour 'hello'; else: add 1 2;
                     loop(tempElseCode)
                 elif(tempElseCode.split(" ")[0]=="if"):
                     if_syntax(tempElseCode)
+                elif(tempElseCode.split(" ")[0]=="func"):
+                    func(tempElseCode)
             #print(tempCheckCode)
     except:
         #print(tempCheckCode)
         print("Something is wrong with your if code.")
+
 def save(user_code, code_line):
     #user_data.insert(0, code_line)
     #user_data.insert(code_line, user_code)
