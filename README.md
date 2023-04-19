@@ -1,9 +1,11 @@
-# Bucket - Version 0.2.9b
+# Bucket - Version 0.3.0b
 This is a programming language that I am creating.
 
 Bucket was originally created for my final project for my Capstone class. The 'b' version will now be the main version, as I am keeping the 'a' version around for archival reasons. All future updates will be made to this Bucket version.
 
 Update Log
+
+**bucket.py** - Version 0.3.0b - Vars can now be declared to other vars. Fixed bugs with open and func. Created special versions of the math operations to be used by func. User code must be entered in lowercase. Pour can now print capital letters. Ecountered some bugs and fixed them.
 
 **bucket.py** - Version 0.2.9b - Added 'func' syntax. This will allow users to create functions. Functions work inside the loops and ifs, and loops and ifs work inside of functions. Currently there is no way to view the contents of all of your functions, but that is a planned feature. I have decided to make this Bucket version the main version. I'll make the 'a' version just a static version for my college class.
 

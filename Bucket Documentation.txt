@@ -1,4 +1,4 @@
-This documentation is for Bucket Version 0.2.9b. It may not be accurate for other versions.
+This documentation is for Bucket Version 0.3.0b. It may not be accurate for other versions.
 
 quit: Used to exit the program.
 exit: Used to exit the program.
@@ -16,6 +16,7 @@ div: This will divide two numbers. To use follow the example - "div 2 1"  or "di
 pour: This prints a string to the screen. To use follow the example - "pour 'hello world'". "pour [000]".
 var: This will add a string to a variable. To use follow the example - "var [000] = 'hello world'". "var [000]"
 Numbers must be in '' in order to be declared to a var. Like "var [0] = '1'". The math operations will automatically detect if it is a number or not.
+Note: Vars can now be set to equa different vars. For example: "var [0] = (var [1])".
 The 'var' can now have the result of any math operation equal to it. For example - "var [000] = (add 1 2)".
 equal: This will check if two instances are equal. To use follow the example - "equal '1' '1'".
 Note: To compare a var to a non var, the non var cannot be passed as a string. "equal [0] hi".
@@ -25,5 +26,3 @@ If: The if and else syntax now works. It cannot work with an if statement inside
 Note: if and else must be used together, if the two inputs are not equal. "if equal 1 1: pour 'hi'; else: add 3 4;".
 Note: Using if inside of an if is buggy currently.
 Note: Unable to combine the different math operations.
-Note: Capitalization is ignored, including in 'pour'.
-Note: pour can now print 'var' syntax or any syntax out.

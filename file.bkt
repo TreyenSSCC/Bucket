@@ -1,1 +1,1 @@
-[2, 'func [0] =| add 1 2| end', 'func [0]']
+[1, "func [0] =| var [0] = 'Welcome to Bucket!'| pour [0]| end"]
