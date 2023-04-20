@@ -1,4 +1,4 @@
-# Version 0.3.0b - 4/19/2023 4:04 PM
+# Version 0.3.1b - 4/20/2023 12:54 PM
 # Copyright (c) 2023 Treyen Wilson
 # This is the b version of Bucket.
 
@@ -365,6 +365,8 @@ def var(user_code):
                 #print(tempVar)
                 if(tempVar[0].split(" ")[0]=="add"):
                     tempVar = add(tempVar[0]) #Only the first list item has the user's code. var [000] = (add 1 2)
+                elif(tempVar[0].split(" ")[0]=="fill"): #var [0] = (fill) #This grabs user input.
+                    tempVar = fill()
                 elif(tempVar[0].split(" ")[0]=="sub"):
                     #print(tempVar)
                     tempVar = sub(tempVar[0])
@@ -392,8 +394,7 @@ def var(user_code):
                     variables.pop(num+1) #This deletes an extra list item that will appear.
                     print(variables)
                 except:
-                    print(variables)
-
+                    print(variables)            
         elif("=" not in user_code):
             tempVar = ""; num = 1; transferData = ""
             transferData = user_code.split("["); transferData = transferData[1].split("]")
@@ -401,6 +402,10 @@ def var(user_code):
             print(variables[num])                
     except:
         print("Something is wrong with your var syntax. Double check it.")
+
+def fill(): #This grabs user input!
+    tempVar = input("")
+    return(tempVar)
 
 def loop(user_code):
     if(user_code[len(user_code)-2]=="\""):
@@ -533,6 +538,8 @@ def svar(user_code): #This var function is for special circumstances where the e
                 #print(tempVar)
                 if(tempVar[0].split(" ")[0]=="add"):
                     tempVar = sadd(tempVar[0]) #Only the first list item has the user's code. var [000] = (add 1 2)
+                elif(tempVar[0].split(" ")[0]=="fill"):
+                    tempVar=fill()
                 elif(tempVar[0].split(" ")[0]=="sub"):
                     #print(tempVar)
                     tempVar = ssub(tempVar[0])

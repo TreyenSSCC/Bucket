@@ -1,1 +1,1 @@
-[1, "func [0] =| var [0] = 'Welcome to Bucket Version 0.3.0b!'| pour [0]| end"]
+[2, "func [0] =| pour 'Type a number:'| var [0] = (fill)| var [0] = (add [0] 5)| pour 'Your new number is:'| pour [0]| end", 'func [0]']
