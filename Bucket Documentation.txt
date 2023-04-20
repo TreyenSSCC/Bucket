@@ -1,28 +1,52 @@
-This documentation is for Bucket Version 0.3.0b. It may not be accurate for other versions.
+This documentation is for Bucket Version 0.3.0b. The following documentation may not apply to other versions of Bucket.
 
-quit: Used to exit the program.
-exit: Used to exit the program.
-drop: In an experimental phase.
-save: This will save code to the 'file.bkt' file. To save there must be more than one line of code.
-func: This allows users to create functions. For example: "func [0] =| add 1 2| pour 'hi'| end". 
-Note: To execute a function the following needs to be typed: "func [0]". Just like vars, they are incremental.
-Note: The spaces are required.
-Note: funcs cannot be created inside of other funcs. But they can be called from funcs.
-open: This syntax for 'open' will load code from the 'file.bkt' and will execute everything from it and list it.
-add: This can add two numbers together. To use follow the example - "add 1 3" or "add [000] 3" or "add 3 [000]".
-sub: This will subtract two numbers. To use follow the example - "sub 2 1" or "sub [000] 3" or "sub 3 [000]" or "sub [000] [001]".
-mul: This will multiply two numbers. To use follow the example - "mul 2 1"  or "mul [000] 3" or "mul 3 [000]" or "mul [000] [001]".
-div: This will divide two numbers. To use follow the example - "div 2 1"  or "div [000] 3" or "div 3 [000]" or "div [000] [001]".
-pour: This prints a string to the screen. To use follow the example - "pour 'hello world'". "pour [000]".
-var: This will add a string to a variable. To use follow the example - "var [000] = 'hello world'". "var [000]"
-Numbers must be in '' in order to be declared to a var. Like "var [0] = '1'". The math operations will automatically detect if it is a number or not.
-Note: Vars can now be set to equa different vars. For example: "var [0] = (var [1])".
-The 'var' can now have the result of any math operation equal to it. For example - "var [000] = (add 1 2)".
-equal: This will check if two instances are equal. To use follow the example - "equal '1' '1'".
-Note: To compare a var to a non var, the non var cannot be passed as a string. "equal [0] hi".
-loop: This will run user code a specified amount of times. To use follow the example - "loop 2 {pour 'hello' 1"add 2 3 2"}"
-The syntax 'var' now works with loop. Loop cannot loop another loop. Loop will first execute the first given syntax the given amount of times and the the second syntax a given amount of times and so on.
-If: The if and else syntax now works. It cannot work with an if statement inside of it.
-Note: if and else must be used together, if the two inputs are not equal. "if equal 1 1: pour 'hi'; else: add 3 4;".
-Note: Using if inside of an if is buggy currently.
-Note: Unable to combine the different math operations.
+save: This command will save user typed code to a file named 'file.bkt'. There must be more than one line of user code to save.
+Example: "save"
+
+open: This command will load code from the file named 'file.bkt', execute it, and list it.
+
+quit / exit: These two can  be used interchangeably to exit Bucket.
+Example: "quit" or "exit"
+
+drop: An experimental command to load 'drops' or 'libraries' from files.
+Example: "drop"
+
+func: This command allows for users to create groups of code. And behaves as functions. Funcs cannot be declared inside of funcs, but they can be called.
+Example:
+To declare a function: "func [0] =| add 1 2| pour 'hi| end"
+To call a function: "func [0]"
+Note: The user has to press end at "func [0] =" to make a new line and then the user has to type "| add 1 2" and press enter again to type another command. "| end" will save and exit the func command. Also, funcs must be incremented and start at [0] and spaces are required for the command.
+
+add: The add command will add two numbers together.
+Example: "add 1 2" or "add [0] 1" or "add [0] [1]"
+Note: The "[#]" are vars.
+Note: You cannot combine any math operations togther.
+
+sub: The sub command will add two numbers together.
+Example: "sub 1 2" or "sub [0] 1" or "sub [0] [1]"
+Note: The "[#]" are vars.
+
+mul: The mul command will add two numbers together.
+Example: "mul 1 2" or "mul [0] 1" or "mul [0] [1]"
+Note: The "[#]" are vars.
+
+div: The div command will add two numbers together.
+Example: "div 1 2" or "div [0] 1" or "div [0] [1]"
+Note: The "[#]" are vars.
+
+equal: The equal command will check if two instances together. It will return 'true' or 'false'. Vars cannot be compared to non vars.
+Example: "equal '1' '1'" or "equal [0] [1]"
+Note: There is currently a bug with comparing strings that contain spaces. In order to compare those types of strings, have them be declared to some vars and compare the vars, as those will compare properly.
+
+pour: The pour command is able to print a string to the screen.
+Example: "pour 'Hello Bucket!'" or "pour [0]"
+
+var: The var command will allow the user to declare a string to a variable. The var is incrementa, also only strings can be declared to vars. The math commands will automatically tell if the string is a number.
+Example: To declare a var: "var [0] = 'Hello Bucket.'" or "var [0] = (add 1 2)" or "var [0] = (var [1]"
+To call a var: "var [0]"
+
+loop: The loop command will run user code a specified amount of times. Loop will first execute the first given syntax the given amount of times and the the second syntax a given amount of times and so on. A loop cannot go inside another loop.
+Example: "loop 3 {pour 'hello world' 1"add 2 3 2"}"
+
+if: The if command uses the equal command to compare strings or vars. It must be used will an else command. It will not work with an if command inside of it.
+Example: "if equal '1' '1': pour 'Hello 1.'; else: add 3 4;"
