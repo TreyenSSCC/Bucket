@@ -1,4 +1,4 @@
-This documentation is for Bucket Version 0.3.1b. The following documentation may not apply to other versions of Bucket.
+This documentation is for Bucket Version 0.3.2b. The following documentation may not apply to other versions of Bucket.
 
 save: This command will save user typed code to a file named 'file.bkt'. There must be more than one line of user code to save.
 Example: "save"
@@ -45,6 +45,7 @@ var: The var command will allow the user to declare a string to a variable. The 
 Example:
 To declare a var: "var [0] = 'Hello Bucket.'" or "var [0] = (add 1 2)" or "var [0] = (var [1])"
 To declare a var to user input use: "var [0] = (fill)"
+To declare a var when another var is equal to a number: "var [1] = '0' . . . var [[1]] = 'hello.'"
 To call a var: "var [0]"
 
 loop: The loop command will run user code a specified amount of times. Loop will first execute the first given syntax the given amount of times and the the second syntax a given amount of times and so on. A loop cannot go inside another loop.

@@ -1,4 +1,4 @@
-# Version 0.3.1b - 4/20/2023 12:54 PM
+# Version 0.3.2b - 4/24/2023 4:33 PM
 # Copyright (c) 2023 Treyen Wilson
 # This is the b version of Bucket.
 
@@ -355,11 +355,19 @@ def pour(user_code):
             print("Double check your pour syntax.") # When given "pour 'hi", it prints the hi but gives an error.    
 
 def var(user_code):
-    try:                # var [000] = 'Hello'
+    try:# var [000] = 'Hello'
         if("=" in user_code):
-            tempVar = ""; num = 1; transferData = "" #These three lines grab the number
-            transferData = user_code.split("["); transferData = transferData[1].split("]")
-            num = int(transferData[0])
+            if("[[" in user_code):# var [[001]] ; var [1] = '0'
+                tempVar = ""; num = 1; transferData = ""
+                transferData = user_code.split(" ")[1]
+                transferData = transferData.split("[")[2]
+                transferData = transferData.split("]")[0]
+                num = variables[int(transferData)] #This is taking the user's predefined number from their variable list.
+                num = int(num)
+            else: # var [0] = 'hi'
+                tempVar = ""; num = 1; transferData = "" #These three lines grab the number
+                transferData = user_code.split("["); transferData = transferData[1].split("]")
+                num = int(transferData[0])
             try: #This checks to see the user is giving syntax after the '='.
                 tempVar = user_code.split("("); tempVar=tempVar[1].split(")") #tempVar ends up a list
                 #print(tempVar)
@@ -396,9 +404,17 @@ def var(user_code):
                 except:
                     print(variables)            
         elif("=" not in user_code):
-            tempVar = ""; num = 1; transferData = ""
-            transferData = user_code.split("["); transferData = transferData[1].split("]")
-            num = int(transferData[0])
+            if("[[" in user_code):
+                tempVar = ""; num = 1; transferData = ""
+                transferData = user_code.split(" ")[1]
+                transferData = transferData.split("[")[2]
+                transferData = transferData.split("]")[0]
+                num = variables[int(transferData)] #This is taking the user's predefined number from their variable list.
+                num = int(num)
+            else:
+                tempVar = ""; num = 1; transferData = ""
+                transferData = user_code.split("["); transferData = transferData[1].split("]")
+                num = int(transferData[0])
             print(variables[num])                
     except:
         print("Something is wrong with your var syntax. Double check it.")
@@ -527,28 +543,36 @@ def check_var(user_code): #This is for when Bucket needs to check what var needs
 #Below is the special syntax that needs to be called in specific circumstances.
 
 #Make sure to keep the special functions up to date with the normal functions!
-def svar(user_code): #This var function is for special circumstances where the entire list of vars does not need to be seen.
-    try:                # var [000] = 'Hello'
+def svar(user_code):
+    try:# var [000] = 'Hello'
         if("=" in user_code):
-            tempVar = ""; num = 1; transferData = "" #These three lines grab the number
-            transferData = user_code.split("["); transferData = transferData[1].split("]")
-            num = int(transferData[0])
+            if("[[" in user_code):# var [[001]] ; var [1] = '0'
+                tempVar = ""; num = 1; transferData = ""
+                transferData = user_code.split(" ")[1]
+                transferData = transferData.split("[")[2]
+                transferData = transferData.split("]")[0]
+                num = variables[int(transferData)] #This is taking the user's predefined number from their variable list.
+                num = int(num)
+            else: # var [0] = 'hi'
+                tempVar = ""; num = 1; transferData = "" #These three lines grab the number
+                transferData = user_code.split("["); transferData = transferData[1].split("]")
+                num = int(transferData[0])
             try: #This checks to see the user is giving syntax after the '='.
                 tempVar = user_code.split("("); tempVar=tempVar[1].split(")") #tempVar ends up a list
                 #print(tempVar)
                 if(tempVar[0].split(" ")[0]=="add"):
-                    tempVar = sadd(tempVar[0]) #Only the first list item has the user's code. var [000] = (add 1 2)
-                elif(tempVar[0].split(" ")[0]=="fill"):
-                    tempVar=fill()
+                    tempVar = add(tempVar[0]) #Only the first list item has the user's code. var [000] = (add 1 2)
+                elif(tempVar[0].split(" ")[0]=="fill"): #var [0] = (fill) #This grabs user input.
+                    tempVar = fill()
                 elif(tempVar[0].split(" ")[0]=="sub"):
                     #print(tempVar)
-                    tempVar = ssub(tempVar[0])
+                    tempVar = sub(tempVar[0])
                 elif(tempVar[0].split(" ")[0]=="mul"):
-                    tempVar = smul(tempVar[0])
+                    tempVar = mul(tempVar[0])
                 elif(tempVar[0].split(" ")[0]=="div"):
-                    tempVar = sdiv(tempVar[0])
+                    tempVar = div(tempVar[0])
                 elif(tempVar[0].split(" ")[0]=="equal"):
-                    tempVar = sequal(tempVar[0])
+                    tempVar = equal(tempVar[0])
                 elif(tempVar[0].split(" ")[0]=="var"):
                     num3 = 1; transferData = "" #These three lines grab the number
                     transferData = tempVar[0].split("["); transferData = transferData[1].split("]")
@@ -567,14 +591,21 @@ def svar(user_code): #This var function is for special circumstances where the e
                     variables.pop(num+1) #This deletes an extra list item that will appear.
                     #print(variables)
                 except:
-                    #print(variables)
-                    print("", sep="", end="") #Empty code
-
+                    print("", sep="", end="")
+                    #print(variables)            
         elif("=" not in user_code):
-            tempVar = ""; num = 1; transferData = ""
-            transferData = user_code.split("["); transferData = transferData[1].split("]")
-            num = int(transferData[0])
-            print(variables[num])                
+            if("[[" in user_code):
+                tempVar = ""; num = 1; transferData = ""
+                transferData = user_code.split(" ")[1]
+                transferData = transferData.split("[")[2]
+                transferData = transferData.split("]")[0]
+                num = variables[int(transferData)] #This is taking the user's predefined number from their variable list.
+                num = int(num)
+            else:
+                tempVar = ""; num = 1; transferData = ""
+                transferData = user_code.split("["); transferData = transferData[1].split("]")
+                num = int(transferData[0])
+            print("", sep="", end="")                
     except:
         print("Something is wrong with your var syntax. Double check it.")
 

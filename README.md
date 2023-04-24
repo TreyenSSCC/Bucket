@@ -1,9 +1,11 @@
-# Bucket - Version 0.3.1b
+# Bucket - Version 0.3.2b
 This is a programming language that I am creating.
 
 Bucket was originally created for my final project for my Capstone class. The 'b' version will now be the main version, as I am keeping the 'a' version around for archival reasons. All future updates will be made to this Bucket version.
 
 Update Log
+
+**bucket.py** - Version 0.3.2b - Vars can now be used as the numbers for others vars. For example if var [0] = '1', the user can type "var [[0]] = 'hi'" and var [1] would be declared as "hi".
 
 **bucket.py** - Version 0.3.1b - User input can now be grabbed. By using "var [0] = (fill)", the user will be prompted to enter something. Use 'pour' to ask for input and then use "var [0] = (fill)" to get the input, whatever the user types will be sent to the var you used. Use 'open' to see an example of a program that uses the fill command in func [0].
 
