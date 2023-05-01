@@ -11,7 +11,7 @@ Example: "quit" or "exit"
 drop: An experimental command to load 'drops' or 'libraries' from files.
 Example: "drop"
 
-func: This command allows for users to create groups of code. And behaves as functions. Funcs cannot be declared inside of funcs, but they can be called.
+func: This command allows for users to create groups of code and it behaves as a function. Funcs cannot be declared inside of funcs, but they can be called from within funcs.
 Example:
 To declare a function: "func [0] =| add 1 2| pour 'hi| end"
 To call a function: "func [0]"
