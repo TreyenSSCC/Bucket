@@ -394,8 +394,8 @@ def var(user_code):
                     variables.pop(num+1) #This deletes an extra list item that will appear.
                     #print(variables)
                 except:
-                    #print("", sep="", end="") #Just some empy code to fill the indentation
-                    print(variables)
+                    print("", sep="", end="") #Just some empy code to fill the indentation
+                    #print(variables)
             except:
                 tempVar=user_code.split("'")[1]                    
                 variables.insert(num, tempVar)
