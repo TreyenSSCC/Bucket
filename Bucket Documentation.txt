@@ -1,4 +1,4 @@
-This documentation is for Bucket Version 0.3.2b. The following documentation may not apply to other versions of Bucket.
+This documentation is for Bucket Version 0.3.3b. The following documentation may not apply to other versions of Bucket.
 
 save: This command will save user typed code to a file named 'file.bkt'. There must be more than one line of user code to save.
 Example: "save"

@@ -1,9 +1,11 @@
-# Bucket - Version 0.3.2b
+# Bucket - Version 0.3.3b
 This is a programming language that I am creating.
 
 Bucket was originally created for my final project for my Capstone class. The 'b' version will now be the main version, as I am keeping the 'a' version around for archival reasons. All future updates will be made to this Bucket version.
 
 Update Log
+
+**bucket.py** - Version 0.3.3b - Fixed a minor bug that caused functions to print every time a different command was executed. The func now calls svar, sadd, sdiv... instead of var, add, div...
 
 **bucket.py** - Version 0.3.2b - Vars can now be used as the numbers for others vars. For example if var [0] = '1', the user can type "var [[0]] = 'hi'" and var [1] would be declared as "hi".
 

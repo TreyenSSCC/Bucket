@@ -1,4 +1,4 @@
-# Version 0.3.2b - 4/24/2023 4:33 PM
+# Version 0.3.3b - 5/1/2023 2:34 PM
 # Copyright (c) 2023 Treyen Wilson
 # This is the b version of Bucket.
 
@@ -561,18 +561,18 @@ def svar(user_code):
                 tempVar = user_code.split("("); tempVar=tempVar[1].split(")") #tempVar ends up a list
                 #print(tempVar)
                 if(tempVar[0].split(" ")[0]=="add"):
-                    tempVar = add(tempVar[0]) #Only the first list item has the user's code. var [000] = (add 1 2)
+                    tempVar = sadd(tempVar[0]) #Only the first list item has the user's code. var [000] = (add 1 2)
                 elif(tempVar[0].split(" ")[0]=="fill"): #var [0] = (fill) #This grabs user input.
                     tempVar = fill()
                 elif(tempVar[0].split(" ")[0]=="sub"):
                     #print(tempVar)
-                    tempVar = sub(tempVar[0])
+                    tempVar = ssub(tempVar[0])
                 elif(tempVar[0].split(" ")[0]=="mul"):
-                    tempVar = mul(tempVar[0])
+                    tempVar = smul(tempVar[0])
                 elif(tempVar[0].split(" ")[0]=="div"):
-                    tempVar = div(tempVar[0])
+                    tempVar = sdiv(tempVar[0])
                 elif(tempVar[0].split(" ")[0]=="equal"):
-                    tempVar = equal(tempVar[0])
+                    tempVar = sequal(tempVar[0])
                 elif(tempVar[0].split(" ")[0]=="var"):
                     num3 = 1; transferData = "" #These three lines grab the number
                     transferData = tempVar[0].split("["); transferData = transferData[1].split("]")
