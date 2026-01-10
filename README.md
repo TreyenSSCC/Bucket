@@ -1,5 +1,5 @@
 # Bucket - Version 0.3.3b
-This is a programming language that I am creating.
+This is a programming language that I am creating. To run Bucket, start bucket.py file inside of Python 3.
 
 Bucket was originally created for my final project for my Capstone class. The 'b' version will now be the main version, as I am keeping the 'a' version around for archival reasons. All future updates will be made to this Bucket version.
 
