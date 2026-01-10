@@ -13,6 +13,12 @@ Example: "drop"
 
 func: This command allows for users to create groups of code and it behaves as a function. Funcs cannot be declared inside of funcs, but they can be called from within funcs.
 Example:
+    # func [000] =
+    # | var [0] = 'Hi there.'
+    # | pour [0]
+    # | add 4 5
+    # | end
+Press enter on each line, do not use #.
 To declare a function: "func [0] =| add 1 2| pour 'hi| end"
 To call a function: "func [0]"
 Note: The user has to press end at "func [0] =" to make a new line and then the user has to type "| add 1 2" and press enter again to type another command. "| end" will save and exit the func command. Also, funcs must be incremented and start at [0] and spaces are required for the command.
