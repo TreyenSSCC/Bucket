@@ -28,15 +28,15 @@ Example: "add 1 2" or "add [0] 1" or "add [0] [1]"
 Note: The "[#]" are vars.
 Note: You cannot combine any math operations togther.
 
-sub: The sub command will add two numbers together.
+sub: The sub command will subtract two numbers together.
 Example: "sub 1 2" or "sub [0] 1" or "sub [0] [1]"
 Note: The "[#]" are vars.
 
-mul: The mul command will add two numbers together.
+mul: The mul command will multiply two numbers together.
 Example: "mul 1 2" or "mul [0] 1" or "mul [0] [1]"
 Note: The "[#]" are vars.
 
-div: The div command will add two numbers together.
+div: The div command will divide two numbers together.
 Example: "div 1 2" or "div [0] 1" or "div [0] [1]"
 Note: The "[#]" are vars.
 
